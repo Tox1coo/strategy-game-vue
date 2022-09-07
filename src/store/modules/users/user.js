@@ -1,6 +1,11 @@
+/* eslint-disable no-unused-vars */
+
+import { firebaseConfig } from "@/store/config/firebase"
 export const user = {
 	state() {
-		return {}
+		return {
+			user: null
+		}
 	},
 
 	mutations: {},
