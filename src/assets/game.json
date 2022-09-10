@@ -1,0 +1,481 @@
+{
+	"users": [
+		{
+			"username": "",
+			"decks": [],
+			"rating": 0
+		}
+	],
+	"settingGame": {
+		"maxLengthDecs": 9,
+		"effectsPhoto": [
+			{
+				"type": "cold",
+				"key": "d3HZR05t/cold.webp"
+			},
+			{
+				"type": "fire",
+				"key": "ZRJW1Ng5/fire.webp"
+			},
+			{
+				"type": "poison",
+				"key": "L4NPFymK/poison.webp"
+			}
+		],
+		"backgroundBattles": [
+			{
+				"indexImage": 1,
+				"key": "Z5HJrzWC/background-battle-1.webp"
+			},
+			{
+				"indexImage": 2,
+				"key": "YCMpGCq5/background-battle-2.webp"
+			},
+			{
+				"indexImage": 3,
+				"key": "3NGKpyGT/background-battle-3.webp"
+			},
+			{
+				"indexImage": 4,
+				"key": "5Nw42C15/background-battle-4.webp"
+			},
+			{
+				"indexImage": 5,
+				"key": "k4zJBNBs/background-battle-5.webp"
+			},
+			{
+				"indexImage": 6,
+				"key": "TP2YSYzV/background-battle-6.webp"
+			},
+			{
+				"indexImage": 7,
+				"key": "ZKkYmckK/background-battle-7.webp"
+			},
+			{
+				"indexImage": 8,
+				"key": "ZRCYbsK0/background-battle-8.webp"
+			},
+			{
+				"indexImage": 9,
+				"key": "Df4fRNMM/background-battle-9.webp"
+			},
+			{
+				"indexImage": 10,
+				"key": "g0BdTyqp/background-battle-10.webp"
+			}
+		],
+		"backgroundPage": [
+			{
+				"indexImage": 1,
+				"key": "Fz0BY8Zp/background-page-1.webp"
+			},
+			{
+				"indexImage": 2,
+				"key": "h4mwZQBm/background-page-2.webp"
+			},
+			{
+				"indexImage": 3,
+				"key": "h4mwZQBm/background-page-2.webp"
+			},
+			{
+				"indexImage": 4,
+				"key": "3JHqsr8c/background-page-4.webp"
+			},
+			{
+				"indexImage": 5,
+				"key": "tTZfjYnL/background-page-5.webp"
+			}
+		],
+		"cardsList": [
+			{
+				"name": "Nilah",
+				"photo": "hGL2YDB1/Nilah-card.webp",
+				"stats": {
+					"health": 125,
+					"damage": 55
+				},
+				"typeCard": {
+					"typeRange": "Средний",
+					"type": "Боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Miss Fortune",
+				"photo": "DZQR1Q0F/Miss-card.webp",
+				"stats": {
+					"health": 115,
+					"damage": 45
+				},
+				"typeCard": {
+					"typeRange": "Средний",
+					"type": "Cтрелок"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Ashe",
+				"photo": "q7yFdc8n/Ashe-card.webp",
+				"stats": {
+					"health": 118,
+					"damage": 47
+				},
+				"typeCard": {
+					"typeRange": "Средний",
+					"type": "Cтрелок"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Braum",
+				"photo": "MZdFxpjs/Braum-card.webp",
+				"stats": {
+					"health": 145,
+					"damage": 30
+				},
+				"typeCard": {
+					"typeRange": "Ближний",
+					"type": "Тяжелый боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Caitlyn",
+				"photo": "RZjY8pn4/Caitlyn-card.webp",
+				"stats": {
+					"health": 122,
+					"damage": 43
+				},
+				"typeCard": {
+					"typeRange": "Средний",
+					"type": "Стрелок"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Ekko",
+				"photo": "NfCS8jsy/Ekko-card.webp",
+				"stats": {
+					"health": 137,
+					"damage": 37
+				},
+				"typeCard": {
+					"typeRange": "Ближний",
+					"type": "Боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Galio",
+				"photo": "4xhLzv2M/Galio-card.webp",
+				"stats": {
+					"health": 150,
+					"damage": 34
+				},
+				"typeCard": {
+					"typeRange": "Ближний",
+					"type": "Тяжелый боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Garen",
+				"photo": "8kHq5bxm/Garen-card.webp",
+				"stats": {
+					"health": 148,
+					"damage": 34
+				},
+				"typeCard": {
+					"typeRange": "Ближний",
+					"type": "Тяжелый боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Graves",
+				"photo": "Pqwg5nkC/Graves-card.webp",
+				"stats": {
+					"health": 115,
+					"damage": 55
+				},
+				"typeCard": {
+					"typeRange": "Средний",
+					"type": "Стрелок"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Janna",
+				"photo": "132xS5bx/Janna-card.webp",
+				"stats": {
+					"health": 105,
+					"damage": 65,
+					"healing": 45
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Rengar",
+				"photo": "LXV0JHQ8/Rengar-card.webp",
+				"stats": {
+					"health": 135,
+					"damage": 53
+				},
+				"typeCard": {
+					"typeRange": "Ближный",
+					"type": "Боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Swain",
+				"photo": "pr24C95j/Swain-card.webp",
+				"stats": {
+					"health": 135,
+					"damage": 53,
+					"spell": {
+						"type": "fire",
+						"rounds": 2,
+						"damageSpell": 7
+					}
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Tahm",
+				"photo": "zGLMxYvx/Tahm-card.webp",
+				"stats": {
+					"health": 127,
+					"damage": 43
+				},
+				"typeCard": {
+					"typeRange": "Ближний",
+					"type": "Боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Tristana",
+				"photo": "hGWCMJHG/Tristana-card.webp",
+				"stats": {
+					"health": 115,
+					"damage": 54
+				},
+				"typeCard": {
+					"typeRange": "Средний",
+					"type": "Стрелок"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "VEL'KOZ",
+				"photo": "BQbwvfTJ/Vel-Ruby-card.webp",
+				"stats": {
+					"health": 110,
+					"damage": 75,
+					"healing": 35
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Vladimir",
+				"photo": "qMFDhDwy/Vladimir-card.webp",
+				"stats": {
+					"health": 110,
+					"damage": 75,
+					"spell": {
+						"type": "cold",
+						"rounds": 3,
+						"damageSpell": 5
+					}
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Vladimir",
+				"photo": "qMFDhDwy/Vladimir-card.webp",
+				"stats": {
+					"health": 110,
+					"damage": 75,
+					"spell": {
+						"type": "cold",
+						"rounds": 3,
+						"damageSpell": 5
+					}
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Yone",
+				"photo": "NfjZrHcq/Yone-card.webp",
+				"stats": {
+					"health": 135,
+					"damage": 43
+				},
+				"typeCard": {
+					"typeRange": "Средний",
+					"type": "Боец"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Yuumi",
+				"photo": "T177ct68/Yuumi-card.webp",
+				"stats": {
+					"health": 120,
+					"damage": 58,
+					"spell": {
+						"type": "poison",
+						"rounds": 2,
+						"damageSpell": 9
+					}
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Zilean",
+				"photo": "wvzGxtVr/Zilean-card.webp",
+				"stats": {
+					"health": 105,
+					"damage": 60,
+					"spell": {
+						"type": "fire",
+						"rounds": 4,
+						"damageSpell": 4
+					}
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			},
+			{
+				"name": "Zoe",
+				"photo": "BbQ7DdRc/Zoe-card.webp",
+				"stats": {
+					"health": 110,
+					"damage": 65,
+					"spell": {
+						"type": "cold",
+						"rounds": 2,
+						"damageSpell": 8
+					}
+				},
+				"typeCard": {
+					"typeRange": "Дальний",
+					"type": "Маг"
+				},
+				"effect": {
+					"photoEffect": {
+						"key": ""
+					}
+				}
+			}
+		]
+	}
+}

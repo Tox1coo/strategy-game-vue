@@ -1,11 +1,55 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div v-if="isLoading" class="block">
+    <router-view />
   </div>
-  <router-view />
+  <IsLoading v-else></IsLoading>
 </template>
 
+<script>
+/* eslint-disable no-unused-vars */
+
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+export default {
+  async created() {
+    await this.getAllImages();
+
+    this.loggedUser()
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        this.getCardList();
+        this.setBodyImage();
+
+        this.updateIsLoading(true);
+      });
+  },
+  methods: {
+    ...mapMutations({
+      updateIsLoading: "user/updateIsLoading",
+    }),
+    ...mapActions({
+      getAllImages: "images/getAllImages",
+      loggedUser: "user/loggedUser",
+      getCardList: "cards/getCardList",
+    }),
+    setBodyImage() {
+      const body = document.getElementsByTagName("body")[0];
+      body.style.backgroundImage = `url(${this.getRandomBackgroundPage})`;
+    },
+  },
+  computed: {
+    ...mapGetters({
+      getRandomBackgroundPage: "images/getRandomBackgroundPage",
+      getRandomBackgroundBattles: "images/getRandomBackgroundBattles",
+    }),
+    ...mapState({
+      backgroundPageList: (state) => state.images.backgroundPageList,
+      isLoading: (state) => state.user.isLoading,
+    }),
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -13,6 +57,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.block {
+  height: 100vh;
 }
 
 #nav {

@@ -2,11 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-require('dotenv').config()
-console.log(process.env.API_FIREBASE_KEY);
 
 export const firebaseConfig = {
-	apiKey: process.env.API_FIREBASE_KEY,
+	apiKey: "AIzaSyC32xCNSGjezt0E14n3Yd8EKMJp8xrMAcI",
 	authDomain: "strategy-game-vue-tox.firebaseapp.com",
 	projectId: "strategy-game-vue-tox",
 	storageBucket: "strategy-game-vue-tox.appspot.com",
@@ -14,7 +12,7 @@ export const firebaseConfig = {
 	appId: "1:962211358219:web:d347fea3559c574e98890e",
 	measurementId: "G-RY17S1YBM2"
 };
-console.log(firebaseConfig)
+export const linkFirebase = "https://strategy-game-vue-tox-default-rtdb.europe-west1.firebasedatabase.app/"
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);

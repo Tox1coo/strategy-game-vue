@@ -1,0 +1,183 @@
+/* general */
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	height: 100vh;
+}
+
+body {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+/* btns */
+.btn {
+	font-family: "Architects Daughter", cursive;
+
+	padding: 15px 45px;
+	background: $gradient;
+	border: none;
+	position: relative;
+	z-index: 1;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: color 0.1s ease 0s;
+	color: rgba($poison-color, 0.7);
+	&::before {
+		position: absolute;
+		display: block;
+		content: "";
+		top: 2px;
+		left: 2px;
+		bottom: 2px;
+		right: 2px;
+		background: rgba(#111, 0.75);
+		z-index: -1;
+	}
+	&:hover {
+		color: rgba($poison-color, 0.9);
+	}
+}
+
+/* text */
+
+.title {
+}
+
+.subtitle {
+	font-family: "Architects Daughter", cursive;
+	font-size: 30px;
+	color: $primary-brown;
+}
+
+.text {
+}
+
+/* form */
+%after-input {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	background-color: $primary-brown;
+}
+.input {
+	max-width: 265px;
+	margin: 0 auto;
+	input {
+		background: none;
+		border: none;
+		color: $primary-brown;
+
+		font-size: 1.6rem;
+		padding: 10px 35px;
+		position: relative;
+		&:focus {
+			outline: none;
+		}
+	}
+	&::after {
+		@extend %after-input;
+	}
+
+	position: relative;
+	&-span {
+		font-family: "Architects Daughter", cursive;
+		display: block;
+		position: absolute;
+		text-align: left;
+		top: 50%;
+		transform: translate(10%, -50%);
+		text-transform: uppercase;
+		color: $primary-brown;
+		font-size: 1.7rem;
+		pointer-events: none;
+		font-weight: 500;
+		width: 100%;
+		transition: all 0.4s ease-in-out 0s;
+
+		&__active {
+			font-size: 1.2rem;
+			top: -10px;
+			left: 0;
+			transform: translate(0, 0);
+		}
+	}
+}
+
+/* auth */
+%center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.auth {
+	height: 100%;
+	@extend %center;
+	flex-direction: column;
+	&__form {
+		@extend %center;
+		box-shadow: 10px 10px 20px $poison-color;
+
+		flex-direction: column;
+		position: relative;
+		border: 2px solid $poison-color;
+		border-radius: 25px;
+		background-color: rgba(#111, 0.4);
+		backdrop-filter: blur(5px) grayscale(85%);
+		height: 600px;
+		width: 500px;
+		.input {
+			margin-top: 25px;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+		.btn {
+			margin-top: 25px;
+		}
+		.subtitle_auth {
+			position: absolute;
+			top: 40px;
+		}
+	}
+	&__btns {
+		width: 100%;
+		@extend %center;
+		flex-direction: column;
+		color: #fff;
+		span {
+			font-size: 1.5rem;
+			margin-top: 10px;
+			color: $primary-brown;
+
+			a {
+				color: #fff;
+				opacity: 0.5;
+				cursor: pointer;
+				transition: opacity 0.1s linear;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+	&__error {
+		color: $error-color;
+		font-size: 1.7rem;
+		height: 0;
+		margin-top: 5px;
+	}
+}
