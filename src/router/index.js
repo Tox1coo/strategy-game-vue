@@ -4,6 +4,8 @@ import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Ratings from "@/views/Ratings.vue";
+import DecksPage from "@/views/DecksPage.vue";
+
 import store from "@/store";
 
 import { getAuth } from "firebase/auth";
@@ -20,6 +22,12 @@ const routes = [
     name: "Ratings",
     meta: { auth: true },
     component: Ratings,
+  },
+  {
+    path: "/decks",
+    name: "DecksPage",
+    meta: { auth: true },
+    component: DecksPage,
   },
   {
     path: "/login",

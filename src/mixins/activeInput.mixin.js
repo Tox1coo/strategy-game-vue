@@ -11,7 +11,6 @@ export const activeInputMixin = {
 		}
 	},
 	mounted() {
-		console.log(this.$refs.input);
 		this.$refs.input.addEventListener('focus', () => {
 			this.activeInput = true
 		})
@@ -21,10 +20,6 @@ export const activeInputMixin = {
 			}
 		})
 
-		/* window.addEventListener("click", function (e) {
-			if (!e.target.localName != "input" && then.activeInput === true && this.inputId === e.target.dataset.input && then.modelValue === '') {
-				then.activeInput = false;
-			}
-		}); */
+
 	}
 }

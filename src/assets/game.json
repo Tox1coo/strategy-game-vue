@@ -372,28 +372,6 @@
 				}
 			},
 			{
-				"name": "Vladimir",
-				"photo": "qMFDhDwy/Vladimir-card.webp",
-				"stats": {
-					"health": 110,
-					"damage": 75,
-					"spell": {
-						"type": "cold",
-						"rounds": 3,
-						"damageSpell": 5
-					}
-				},
-				"typeCard": {
-					"typeRange": "Дальний",
-					"type": "Маг"
-				},
-				"effect": {
-					"photoEffect": {
-						"key": ""
-					}
-				}
-			},
-			{
 				"name": "Yone",
 				"photo": "NfjZrHcq/Yone-card.webp",
 				"stats": {
