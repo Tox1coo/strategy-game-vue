@@ -69,6 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins.scss";
+
 .decoration {
   content: "";
   display: block;
@@ -84,11 +86,11 @@ export default {
   transition: all 0.2s ease 0s;
 }
 .nav {
+  @include background;
   height: 6rem;
   width: 100%;
   border-bottom: 2px solid $poison-color;
-  background-color: rgba(#111, 0.1);
-  backdrop-filter: blur(5px) saturate(5%);
+
   &__list {
     display: flex;
     align-items: center;

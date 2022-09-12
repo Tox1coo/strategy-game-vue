@@ -52,11 +52,14 @@ body {
 /* text */
 
 .title {
+	@extend .subtitle;
+	font-size: 4.5rem;
+	text-transform: uppercase;
 }
 
 .subtitle {
 	font-family: "Architects Daughter", cursive;
-	font-size: 30px;
+	font-size: 3rem;
 	color: $primary-brown;
 }
 
