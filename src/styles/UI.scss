@@ -52,18 +52,30 @@ body {
 /* text */
 
 .title {
-	@extend .subtitle;
-	font-size: 4.5rem;
+	font-family: "Architects Daughter", cursive;
+
+	font-size: 4rem;
 	text-transform: uppercase;
+	color: $poison-color;
 }
 
 .subtitle {
 	font-family: "Architects Daughter", cursive;
 	font-size: 3rem;
 	color: $primary-brown;
+	&_info {
+		font-size: 1.8rem;
+		text-align: center;
+		width: 100%;
+	}
 }
 
 .text {
+	font-size: 1.3rem;
+	text-align: left;
+	line-height: 1.5;
+	letter-spacing: 2px;
+	font-family: "Architects Daughter", cursive;
 }
 
 /* form */

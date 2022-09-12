@@ -35,14 +35,17 @@ export const user = {
 	getters: {},
 
 	actions: {
-		async getLoginUser({ commit }, { email, password }) {
+		async getLoginUser({ commit, dispatch }, { email, password }) {
 			await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
 				commit('updateUser', userCredential.user)
+				dispatch('cards/getDecksUser', user.uid, { root: true })
+
 			}).catch((error) => {
 				console.dir(error);
 				commit('updateErrorStatus', { error: true, errorMessage: error.code })
 			})
 		},
+
 		async getRegisterUser({ commit, dispatch }, { email, password, name }) {
 			await createUserWithEmailAndPassword(auth, email, password).then(userCredential => {
 				commit('updateUser', userCredential.user)
@@ -52,10 +55,8 @@ export const user = {
 			})
 		},
 
-		async setUserInfo({ commit, rootState }, { user, name }) {
-			console.log(rootState.cards.cardList);
+		async setUserInfo({ commit, dispatch }, { user, name }) {
 			const userInfo = {
-				cards: rootState.cards.cardList,
 				decks: [''],
 				rating: 0,
 				wins: 0,
@@ -66,17 +67,22 @@ export const user = {
 			updateProfile(user, {
 				displayName: name,
 			}).then(() => {
-				commit('updateUser', user)
+				commit('updateUser', user);
+				dispatch('cards/getDecksUser', user.uid, { root: true })
+
 			}).catch((error) => {
+				console.log(error);
 			});
 		},
-		loggedUser({ commit }) {
+		loggedUser({ commit, dispatch }) {
 
 			return new Promise((resolve, reject) => {
 				onAuthStateChanged(auth, user => {
 					if (user) {
 						commit('updateUser', user)
 						commit('updateIsLoading', true)
+						dispatch('cards/getDecksUser', user.uid, { root: true })
+
 						resolve('access')
 					}
 					else {

@@ -31,6 +31,11 @@ export default {
       showDropFilter: false,
     };
   },
+  mounted() {
+    window.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("filter")) this.showDropFilter = false;
+    });
+  },
   props: {
     filterList: {
       type: Array,

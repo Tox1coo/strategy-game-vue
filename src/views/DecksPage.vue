@@ -14,22 +14,22 @@
         </li>
       </ul>
     </div>
-    <DecksPage v-if="acitveDecksPage === 'cards'" :decksTitle="'Все карты'">
+    <DecksBody v-if="acitveDecksPage === 'cards'" :decksTitle="'Все карты'">
       <DecksCardsList :cardsList="getSortedCardsList"></DecksCardsList>
-    </DecksPage>
-    <DecksPage
+    </DecksBody>
+    <DecksBody
       v-else-if="acitveDecksPage === 'decks'"
       :decksTitle="'Ваши колоды'"
     >
       <DecksUser></DecksUser>
-    </DecksPage>
+    </DecksBody>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapState } from "vuex";
 import DecksCardsList from "@/components/Decks/DecksCardsList.vue";
-import DecksPage from "@/components/Decks/DecksPage.vue";
+import DecksBody from "@/components/Decks/DecksBody.vue";
 import DecksUser from "@/components/Decks/DecksUser.vue";
 
 export default {
@@ -58,7 +58,7 @@ export default {
       getSortedCardsList: "cards/getSortedCardsList",
     }),
   },
-  components: { DecksCardsList, DecksPage, DecksUser },
+  components: { DecksCardsList, DecksBody, DecksUser },
 };
 </script>
 

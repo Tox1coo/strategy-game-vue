@@ -83,7 +83,6 @@ export default {
       updateFilterItemType: "cards/updateFilterItemType",
     }),
     changeActiveFilter(filterItem) {
-      console.log(filterItem);
       if (filterItem.type === "range")
         this.updateFilterItemRange(filterItem.name);
       else if (filterItem.type === "type")
@@ -107,12 +106,21 @@ export default {
   height: 100%;
   flex-direction: column;
   &__list {
-    height: 680px;
+    max-height: 680px;
     overflow-y: auto;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
+    padding-right: 15px;
+    padding-top: 5px;
+    &::-webkit-scrollbar {
+      width: 10px;
+      &-thumb {
+        border-radius: 15px;
+        background-color: $poison-color;
+      }
+    }
   }
   &__filter {
     display: flex;
