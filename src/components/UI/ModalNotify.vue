@@ -1,6 +1,6 @@
 <template>
   <transition name="notify-effect">
-    <div v-if="notify.visible" class="notify">
+    <div v-if="false" class="notify">
       <div class="notify__inner">
         <p class="text">{{ notify.message }}</p>
       </div>
@@ -28,8 +28,6 @@ export default {
   right: 0;
   z-index: 1111;
   top: 0;
-  display: flex;
-  align-items: flex-end;
   &__inner {
     @include background;
     display: flex;
@@ -46,18 +44,20 @@ export default {
 
 .notify-effect-enter-active,
 .notify-effect-leave-active {
-  transform: translateX(100%);
+  right: -100%;
 
-  transition: all 2s ease;
+  transition: all 2.5s ease;
 }
 
 .notify-effect-enter-to {
-  transform: translateX(0);
+  right: 0;
+
   visibility: visible;
   opacity: 1;
 }
 .notify-effect-leave-to {
-  transform: translateX(100%);
+  right: -100%;
+
   visibility: hidden;
   opacity: 0;
 }
