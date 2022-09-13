@@ -1,6 +1,7 @@
 <template>
   <div v-if="isLoading" class="block">
     <router-view />
+    <ModalNotify></ModalNotify>
   </div>
   <IsLoading v-else></IsLoading>
 </template>
@@ -18,10 +19,7 @@ export default {
         console.log(error);
       })
       .finally(() => {
-        this.getCardList();
         this.setBodyImage();
-
-        this.updateIsLoading(true);
       });
   },
   methods: {

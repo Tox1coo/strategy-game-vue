@@ -7,6 +7,8 @@ export const messages = {
 	"This field should be at least 8 characters long": "Минимальная длина 8 символов",
 	"This field should be at least 4 characters long": "Минимальная длина 4 символа",
 	"auth/email-already-in-use": "Данный e-mail уже используется",
-	"russian-word-in-passowrd": "Пароль не должен содержать русских букв (а-я, А-Я)"
-
+	"russian-word-in-passowrd": "Пароль не должен содержать русских букв (а-я, А-Я)",
+	"empty-name-deck": 'Введите название колоды',
+	"name-already-in-decks": "Колода с таким именем уже есть в вашей стопке",
+	"error-put-in-decks": "Не удалось загрузить колоду в базу"
 }

@@ -7,7 +7,7 @@
           v-for="sidebarItem in sidebarInfo"
           :key="sidebarItem.name + '-' + sidebarItem.type"
           class="sidebar__item"
-          @click="acitveDecksPage = sidebarItem.type"
+          @click="updateActiveDecksPage(sidebarItem.type)"
         >
           <img :src="require(`@/assets/${sidebarItem.photo}.png`)" alt="" />
           {{ sidebarItem.name }}
@@ -21,13 +21,13 @@
       v-else-if="acitveDecksPage === 'decks'"
       :decksTitle="'Ваши колоды'"
     >
-      <DecksUser></DecksUser>
+      <DecksUser :decksUser="getDecksUser"></DecksUser>
     </DecksBody>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 import DecksCardsList from "@/components/Decks/DecksCardsList.vue";
 import DecksBody from "@/components/Decks/DecksBody.vue";
 import DecksUser from "@/components/Decks/DecksUser.vue";
@@ -47,16 +47,24 @@ export default {
           photo: "icon-cards",
         },
       ],
-      acitveDecksPage: "cards",
     };
   },
   computed: {
-    ...mapState({
-      cardList: (state) => state.cards.cardLists,
-    }),
     ...mapGetters({
       getSortedCardsList: "cards/getSortedCardsList",
+      getDecksUser: "decks/getDecksUser",
     }),
+    ...mapState({
+      acitveDecksPage: (state) => state.decks.acitveDecksPage,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      updateActiveDecksPage: "decks/updateActiveDecksPage",
+    }),
+    makeFavoriteDeck(deck, favorite) {
+      console.log(deck, favorite);
+    },
   },
   components: { DecksCardsList, DecksBody, DecksUser },
 };
@@ -73,6 +81,7 @@ export default {
   border-right: 2px solid $poison-color;
   &__list {
     @include background;
+    border: none;
     list-style: none;
     width: 60px;
     height: 100vh;

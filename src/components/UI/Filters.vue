@@ -88,7 +88,6 @@ export default {
   z-index: 1111;
   width: 100%;
   height: fit-content;
-  border: 2px solid $poison-color;
   border-radius: 10px;
   &__list {
     list-style: none;

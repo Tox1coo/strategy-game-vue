@@ -89,8 +89,9 @@ export default {
   @include background;
   height: 6rem;
   width: 100%;
-  border-bottom: 2px solid $poison-color;
+  border: none;
 
+  border-bottom: 2px solid $poison-color;
   &__list {
     display: flex;
     align-items: center;

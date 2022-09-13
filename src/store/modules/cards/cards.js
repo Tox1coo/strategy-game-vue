@@ -6,8 +6,6 @@ export const cards = {
 			cardList: [],
 			filterItemType: "Все",
 			filterItemRange: "Все",
-			decksList: [],
-			activeDeck: ''
 		}
 	},
 
@@ -21,9 +19,7 @@ export const cards = {
 		updateFilterItemRange(state, filterItemRange) {
 			state.filterItemRange = filterItemRange
 		},
-		updateDecksUser(state, decksList) {
-			state.decksList = decksList
-		}
+
 	},
 	getters: {
 		getSortedCardsList(state) {
@@ -41,14 +37,14 @@ export const cards = {
 		getCardList({ commit }) {
 			axios.get(`${linkFirebase}settingGame/cardsList.json`).then((cards) => {
 				commit('updateCardList', cards.data)
-			}).catch((error) => console.log(error))
+			}).then(() => {
+				commit('user/updateIsLoading', true, { root: true })
+
+			})
+				.catch((error) => console.log(error))
+
 		},
-		getDecksUser({ commit }, uid) {
-			console.log(uid);
-			axios.get(`${linkFirebase}/users/${uid}/decks.json`).then((decks) => {
-				commit('updateDecksUser', decks.data)
-			}).catch((error) => console.log(error))
-		}
+
 	},
 
 	namespaced: true

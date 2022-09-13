@@ -28,6 +28,18 @@
         :cardStats="cardInfo.stats"
         :isRotating="isRotate"
       ></CardInfoStats>
+      <CardButtonSetting
+        v-if="acitveDecksPage === 'decks'"
+        @eventCard="removeCardInDecks"
+        :viewBoxSetting="'0 0 500 500'"
+        :path="'remove'"
+      ></CardButtonSetting>
+      <CardButtonSetting
+        v-else
+        @eventCard="addCardInDecks"
+        :viewBoxSetting="'0 0 42 42'"
+        :path="'add'"
+      ></CardButtonSetting>
     </div>
 
     <div :class="{ card__info_rotate: !isRotate }" class="card__info info">
@@ -44,8 +56,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import CardInfoBlock from "@/components/Card/CardInfoBlock.vue";
+import CardButtonSetting from "@/components/Card/CardButtonSetting.vue";
+
 import CardInfoStats from "@/components/Card/CardInfoStats.vue";
 export default {
   data() {
@@ -62,20 +76,31 @@ export default {
   computed: {
     ...mapState({
       IMAGE_LINK: (state) => state.images.IMAGE_LINK,
+      acitveDecksPage: (state) => state.decks.acitveDecksPage,
     }),
     getImageCard() {
       return `${this.IMAGE_LINK}${this.cardInfo.photo}`;
     },
   },
   methods: {
+    ...mapActions({
+      addInDecks: "decks/addInDecks",
+      removeInDecks: "decks/removeInDecks",
+    }),
     rotateCard() {
       const checkRoute = this.$router.currentRoute._rawValue.name !== "Battles";
       if (checkRoute) {
         this.isRotate = !this.isRotate;
       }
     },
+    removeCardInDecks() {
+      this.$emit("removeCard", this.cardInfo);
+    },
+    addCardInDecks() {
+      this.addInDecks(this.cardInfo);
+    },
   },
-  components: { CardInfoBlock, CardInfoStats },
+  components: { CardInfoBlock, CardInfoStats, CardButtonSetting },
 };
 </script>
 

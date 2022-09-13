@@ -11,6 +11,10 @@
         :filterList="filtersRange"
         :activeFilterItem="filterItemRange"
       ></Filters>
+      <div v-if="getFavoriteDeck" class="title">
+        Активная колода: {{ getFavoriteDeck.name }}
+        <!-- <span>{{ getCountCardsInActiveDeck }}/9</span> -->
+      </div>
     </div>
     <div v-if="cardsList.length > 0" class="cards__list">
       <Card
@@ -24,7 +28,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 import Card from "@/components/Card/Card.vue";
 export default {
   data() {
@@ -95,17 +99,24 @@ export default {
       filterItemType: (state) => state.cards.filterItemType,
       filterItemRange: (state) => state.cards.filterItemRange,
     }),
+    ...mapGetters({
+      getFavoriteDeck: "decks/getFavoriteDeck",
+    }),
   },
 };
 </script>
-
+    /*     getCountCardsInActiveDeck() {
+      return this.getFavoriteDeck.cards.filter((card) => card !== "").length;
+    }, */
 <style lang="scss" scoped>
+@import "@/styles/mixins.scss";
 .cards {
   min-width: 100%;
   display: flex;
   height: 100%;
   flex-direction: column;
   &__list {
+    @include custom-scrollbar;
     max-height: 680px;
     overflow-y: auto;
     display: flex;
@@ -114,18 +125,14 @@ export default {
     gap: 20px;
     padding-right: 15px;
     padding-top: 5px;
-    &::-webkit-scrollbar {
-      width: 10px;
-      &-thumb {
-        border-radius: 15px;
-        background-color: $poison-color;
-      }
-    }
   }
   &__filter {
     display: flex;
     gap: 20px;
     margin-bottom: 25px;
+    .title {
+      font-size: 2rem;
+    }
   }
   .title {
     flex: 0 1 50%;

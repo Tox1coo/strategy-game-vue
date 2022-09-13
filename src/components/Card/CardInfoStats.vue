@@ -58,7 +58,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
 .card__stats {
-  @include rotate-card();
+  @include rotate-card;
 
   &_damage {
     top: -5px;
