@@ -5,6 +5,8 @@ import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Ratings from "@/views/Ratings.vue";
 import DecksPage from "@/views/DecksPage.vue";
+import NotFound from "@/views/NotFound.vue";
+import Battles from "@/views/Battles.vue";
 
 import store from "@/store";
 
@@ -30,6 +32,12 @@ const routes = [
     component: DecksPage,
   },
   {
+    path: "/battles",
+    name: "Battles",
+    meta: { auth: true },
+    component: Battles,
+  },
+  {
     path: "/login",
     name: "Login",
     meta: { auth: false },
@@ -43,6 +51,8 @@ const routes = [
 
     component: Register
   },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+
 ];
 
 const router = createRouter({
@@ -71,7 +81,6 @@ router.beforeEach((to, from, next) => {
     }
   })
 })
-
 
 
 export default router;

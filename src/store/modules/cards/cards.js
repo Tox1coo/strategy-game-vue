@@ -37,9 +37,6 @@ export const cards = {
 		getCardList({ commit }) {
 			axios.get(`${linkFirebase}settingGame/cardsList.json`).then((cards) => {
 				commit('updateCardList', cards.data)
-			}).then(() => {
-				commit('user/updateIsLoading', true, { root: true })
-
 			})
 				.catch((error) => console.log(error))
 

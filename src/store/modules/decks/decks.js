@@ -8,6 +8,8 @@ export const decks = {
 			activeDeck: '',
 			checkNameInDecks: undefined,
 			acitveDecksPage: 'cards',
+			playerDeck: null,
+			opponentDeck: null
 		}
 	},
 
@@ -56,13 +58,18 @@ export const decks = {
 		},
 		getIndexFavoriteDecks(state) {
 			return state.decksList.findIndex(deck => deck.favorite)
+		},
+		getCountCardsInFavoriteDeck(state, getters) {
+			return getters.getFavoriteDeck.cards.filter(card => card !== '').length
 		}
 	},
 	actions: {
 		getDecksUser({ commit }, uid) {
 			axios.get(`${linkFirebase}users/${uid}/decks.json`).then((decks) => {
-				commit('updateDecksUser', decks.data)
-			}).catch((error) => console.log(error))
+				commit('updateDecksUser', decks.data);
+
+			})
+				.catch((error) => console.log(error))
 		},
 		getNameInDecks({ commit, state }, deckName) {
 			commit('updateCheckName', state.decksList.find(deckItem => deckItem.name === deckName.name))
@@ -140,6 +147,12 @@ export const decks = {
 			console.log(indexDeck);
 			commit('removeCardsInDeck', { deckIndex: indexDeck, card: card })
 			dispatch('fetchDecksList', `Карта была успешка удалена из колоды: ${card.name}`)
+		},
+
+		getBattleDecks({ commi, getters }) {
+			return new Promise((resolve, reject) => {
+				const playerDeck = this.getters.getFavoriteDeck.cards.filter(card => card !== '')
+			})
 		}
 	},
 

@@ -20,6 +20,7 @@ export default {
       })
       .finally(() => {
         this.setBodyImage();
+        this.updateIsLoading(true);
       });
   },
   methods: {

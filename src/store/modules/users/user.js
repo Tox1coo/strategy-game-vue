@@ -63,7 +63,8 @@ export const user = {
 				rating: 0,
 				wins: 0,
 				defeat: 0,
-				ratingCount: 0
+				ratingCount: 0,
+				username: name
 			}
 			await axios.put(`${linkFirebase}users/${user.uid}.json`, userInfo);
 			updateProfile(user, {

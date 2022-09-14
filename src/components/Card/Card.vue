@@ -1,11 +1,10 @@
 <template>
-  <div @click="rotateCard()" class="card">
+  <div @click="rotateCard()" :class="{ 'cell-card': !checkRoute }" class="card">
     <div class="card__images">
       <img
         :class="{ card__slip_rotate: isRotate }"
         ref="cardImg"
         class="card__slip"
-        width="200"
         src="https://i.postimg.cc/QM2QDD9L/card.webp"
         alt=""
       />
@@ -13,8 +12,6 @@
         :class="{ card__img_rotate: isRotate }"
         ref="personImg"
         class="card__img"
-        height="250"
-        width="190"
         :src="getImageCard"
         alt=""
       />
@@ -29,20 +26,24 @@
         :isRotating="isRotate"
       ></CardInfoStats>
       <CardButtonSetting
-        v-if="acitveDecksPage === 'decks'"
+        v-if="acitveDecksPage === 'decks' && checkRoute"
         @eventCard="removeCardInDecks"
         :viewBoxSetting="'0 0 500 500'"
         :path="'remove'"
       ></CardButtonSetting>
       <CardButtonSetting
-        v-else
+        v-else-if="acitveDecksPage === 'cards' && checkRoute"
         @eventCard="addCardInDecks"
         :viewBoxSetting="'0 0 42 42'"
         :path="'add'"
       ></CardButtonSetting>
     </div>
 
-    <div :class="{ card__info_rotate: !isRotate }" class="card__info info">
+    <div
+      v-if="checkRoute"
+      :class="{ card__info_rotate: !isRotate }"
+      class="card__info info"
+    >
       <CardInfoBlock
         :cardInfo="[
           cardInfo.typeCard,
@@ -65,6 +66,7 @@ export default {
   data() {
     return {
       isRotate: false,
+      checkRoute: "",
     };
   },
   props: {
@@ -88,8 +90,8 @@ export default {
       removeInDecks: "decks/removeInDecks",
     }),
     rotateCard() {
-      const checkRoute = this.$router.currentRoute._rawValue.name !== "Battles";
-      if (checkRoute) {
+      this.checkRoute = this.$router.currentRoute._rawValue.name !== "Battles";
+      if (this.checkRoute) {
         this.isRotate = !this.isRotate;
       }
     },

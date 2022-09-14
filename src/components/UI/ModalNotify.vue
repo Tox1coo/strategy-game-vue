@@ -1,6 +1,6 @@
 <template>
   <transition name="notify-effect">
-    <div v-if="false" class="notify">
+    <div v-if="notify.visible" class="notify">
       <div class="notify__inner">
         <p class="text">{{ notify.message }}</p>
       </div>
@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
 .notify {
-  position: absolute;
+  position: fixed;
   height: 100%;
   right: 0;
   z-index: 1111;
@@ -46,7 +46,7 @@ export default {
 .notify-effect-leave-active {
   right: -100%;
 
-  transition: all 2.5s ease;
+  transition: all 2s ease;
 }
 
 .notify-effect-enter-to {

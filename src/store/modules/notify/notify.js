@@ -15,7 +15,7 @@ export const notify = {
 				state.notify.visible = false;
 				state.notify.message = ''
 
-			}, 2100);
+			}, 4000);
 		}
 	},
 	namespaced: true

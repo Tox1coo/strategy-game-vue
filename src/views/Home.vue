@@ -6,6 +6,7 @@
       width="300"
       src="https://i.postimg.cc/HxwVBkRL/pngegg.webp"
       alt="play"
+      @click="goToBattle"
     />
     <div class="subtitle">
       Нажмите на кнопку, чтобы начать игру! Не забудьте составить колоду и
@@ -15,9 +16,33 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "Home",
-  components: {},
+
+  computed: {
+    ...mapGetters({
+      getCountCardsInFavoriteDeck: "decks/getCountCardsInFavoriteDeck",
+    }),
+  },
+
+  methods: {
+    ...mapMutations({
+      updateNotify: "notify/updateNotify",
+    }),
+    goToBattle() {
+      try {
+        if (this.getCountCardsInFavoriteDeck < 9)
+          throw "Количество карт в колоде меньше 9";
+        else this.$router.push("/battles");
+      } catch (e) {
+        this.updateNotify({
+          visible: true,
+          message: e,
+        });
+      }
+    },
+  },
 };
 </script>
 
