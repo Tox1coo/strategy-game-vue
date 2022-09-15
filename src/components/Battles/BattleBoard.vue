@@ -17,7 +17,7 @@
       class="battle-buttons"
     >
       <BattleButtons
-        v-for="(button, key, index) in cardAttack[activeTurn].stats"
+        v-for="(button, key, index) in cardAttack[activeTurn]?.stats"
         :key="index + key"
         :buttonEffect="button"
         :typeButton="key"

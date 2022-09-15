@@ -49,24 +49,39 @@ export const battles = {
 		// createEventCard({ commit, state }, event) {
 
 		// },
-		takeCardEventCard({ commit, dispatch, state }, { board, event, card = null }) {
+		takeCardEventCard({ commit, dispatch, state, rootGetters, rootState }, { board, event, card = null }) {
 			commit('updateActiveEventCard', event)
-
+			console.log();
 			console.log(board, event, card);
 			if (state.activeEventCard === 'damage' && card !== null) {
 				commit('updateCardAttack', { key: board, card: card })
 				if (board === 'opponent') {
-					const cards = state.opponentsCard.cards
-					const cardIndex = cards.findIndex(opponent => opponent.name === card.name);
-					cards.at(cardIndex).stats.health = cards.at(cardIndex).stats.health - state.cardAttack['user'].stats.damage;
-					console.log(cards.at(cardIndex));
+					const cards = state.opponentsCard
+					const cardIndex = cards.cards.findIndex(opponent => opponent.name === card.name);
+					cards.cards.at(cardIndex).stats.health = cards.cards.at(cardIndex).stats.health - state.cardAttack['user'].stats.damage;
+					console.log(cards.cards.at(cardIndex));
 					console.log(cards);
 					commit('updateOpponentsCards', cards);
 					commit('updateActiveTakeCard', 'opponent')
 					commit('changeActiveTurn', 'opponent');
 					commit('zeroingCardAttack');
 					commit('updateActiveEventCard', '')
+					return
+				}
+				if (board === 'user') {
+					const rootCards = rootState.decks.decksList
+					const deckIndex = rootCards.findIndex(deck => deck.name === rootGetters['decks/getFavoriteDeck'].name)
+					console.log(deckIndex);
+					const cardIndex = rootCards.at(deckIndex).cards.findIndex(user => user.name === card.name);
+					console.log(cardIndex);
+					rootCards.at(deckIndex).cards.at(cardIndex).stats.health = rootCards.at(deckIndex).cards.at(cardIndex).stats.health - state.cardAttack['opponent'].stats.damage;
+					console.log(rootCards.at(deckIndex).cards.at(cardIndex).stats.health);
 
+					commit('decks/updateDecksUser', rootCards, { root: true })
+					commit('updateActiveTakeCard', 'user')
+					commit('changeActiveTurn', 'user');
+					commit('zeroingCardAttack');
+					commit('updateActiveEventCard', '')
 					return
 				}
 			}
