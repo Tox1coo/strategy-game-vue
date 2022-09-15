@@ -61,6 +61,9 @@ export const decks = {
 		},
 		getCountCardsInFavoriteDeck(state, getters) {
 			return getters.getFavoriteDeck.cards.filter(card => card !== '').length
+		},
+		getUserDeadCard(state, getters) {
+			return getters.getFavoriteDeck?.cards.filter(card => card?.dead)
 		}
 	},
 	actions: {

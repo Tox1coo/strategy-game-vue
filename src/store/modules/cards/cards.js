@@ -39,6 +39,9 @@ export const cards = {
 				commit('updateCardList', cards.data)
 			})
 				.catch((error) => console.log(error))
+				.finally(() => {
+					commit('user/updateIsLoading', true, { root: true })
+				})
 
 		},
 

@@ -1,7 +1,10 @@
 <template>
   <div
     @click="attackCard"
-    :class="{ cell_active: getActiveCard }"
+    :class="{
+      cell_active: getActiveCard,
+      cell_dead: card.stats.health === 0,
+    }"
     class="battle-board__cell cell"
   >
     <Card :cardInfo="card"></Card>
@@ -48,7 +51,7 @@ export default {
 .cell {
   height: 18vh;
   width: 8vw;
-  transition: transform 0.5s ease 0s;
+  transition: transform 0.5s ease 0s, filter 0.5s linear;
   .card {
     height: 100%;
   }
@@ -66,6 +69,10 @@ export default {
     .subtitle {
       font-size: 1.5rem;
     }
+  }
+  &_dead {
+    pointer-events: none;
+    filter: grayscale(100%);
   }
   &_active {
     transform: scale(1.1);

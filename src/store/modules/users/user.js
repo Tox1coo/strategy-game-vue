@@ -83,7 +83,6 @@ export const user = {
 				onAuthStateChanged(auth, user => {
 					if (user) {
 						commit('updateUser', user)
-						commit('updateIsLoading', true)
 						dispatch('decks/getDecksUser', user.uid, { root: true })
 
 						dispatch('cards/getCardList', null, { root: true })
@@ -92,6 +91,7 @@ export const user = {
 					else {
 						reject('Пользователь не зашёл')
 						commit('updateIsLoading', true)
+
 					}
 				})
 			})

@@ -1,5 +1,11 @@
 <template>
-  <div @click="rotateCard()" :class="{ 'cell-card': !checkRoute }" class="card">
+  <div
+    @click="rotateCard()"
+    :class="{
+      'cell-card': !checkRoute,
+    }"
+    class="card"
+  >
     <div class="card__images">
       <img
         :class="{ card__slip_rotate: isRotate }"
@@ -102,6 +108,9 @@ export default {
       this.addInDecks(this.cardInfo);
     },
   },
+  mounted() {
+    this.checkRoute = this.$router.currentRoute._rawValue.name !== "Battles";
+  },
   components: { CardInfoBlock, CardInfoStats, CardButtonSetting },
 };
 </script>
@@ -114,12 +123,15 @@ export default {
   cursor: pointer;
 
   &__images {
+    height: 300px;
     .card__slip {
       @include rotate-card;
+      height: 100%;
     }
 
     .card__img {
       @include rotate-card(opacity, 0, -50%);
+      height: 70%;
     }
     .subtitle_name {
       @include rotate-card(opacity, 0);

@@ -25,9 +25,11 @@
       ></BattleButtons>
     </div>
 
-    <div v-if="activeTurn === boardType" class="battle-board-turn">
-      Твой ход
-    </div>
+    <transition name="turn">
+      <div v-if="activeTurn === boardType" class="battle-board-turn">
+        Твой ход
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -106,5 +108,18 @@ export default {
   width: 100%;
   position: relative;
   top: 50px;
+}
+.turn-enter-active,
+.turn-leave-active {
+  transform: translateX(-50%) scaleY(0);
+
+  transition: transform 0.4s ease-in;
+}
+
+.turn-enter-to {
+  transform: translateX(-50%) scaleY(1);
+}
+.turn-leave-to {
+  transform: translateX(-50%) scaleY(0);
 }
 </style>

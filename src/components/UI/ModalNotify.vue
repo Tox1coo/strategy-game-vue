@@ -28,6 +28,7 @@ export default {
   right: 0;
   z-index: 1111;
   top: 0;
+  pointer-events: none;
   &__inner {
     @include background;
     display: flex;
