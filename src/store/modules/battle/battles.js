@@ -10,7 +10,8 @@ export const battles = {
 			activeTurn: "user",
 			activeTakeCard: 'user',
 			activeEventCard: '',
-			opponentsCard: { cards: [] }
+			opponentsCard: { cards: [] },
+			round: 1
 		}
 	},
 	getters: {
@@ -22,6 +23,9 @@ export const battles = {
 		},
 		getOpponentsDeadCard(state, getters) {
 			return getters.getOpponentCards?.cards.filter(card => card?.dead)
+		},
+		getRounds(state) {
+			return state.round
 		}
 	},
 	mutations: {
@@ -46,6 +50,12 @@ export const battles = {
 				cardHealing: null,
 				opponent: null,
 			}
+		},
+		updateRound(state) {
+			state.round++
+		},
+		restarRound(state) {
+			state.round = 1
 		}
 	},
 	actions: {
@@ -63,6 +73,9 @@ export const battles = {
 
 			promise.then((response) => {
 				let { cards, deckIndex, cardIndex } = response
+				let root = true;
+				let pathDispatch = 'decks/updateDecksUser'
+				let boardNext = 'user'
 				if (board === 'opponent') {
 					cards.cards.at(cardIndex).stats.health = cards.cards.at(cardIndex).stats.health - state.cardAttack['user'].stats.damage;
 
@@ -70,31 +83,35 @@ export const battles = {
 						cards.cards.at(cardIndex).stats.health = 0
 						cards.cards.at(cardIndex).dead = true
 					}
-					commit('updateOpponentsCards', cards);
-					commit('updateActiveTakeCard', 'opponent')
-					commit('changeActiveTurn', 'opponent');
+					root = false;
+					pathDispatch = 'updateOpponentsCards';
+					boardNext = 'opponent'
+
 				}
 				if (board === 'user') {
 					cards.at(deckIndex).cards.at(cardIndex).stats.health = cards.at(deckIndex).cards.at(cardIndex).stats.health - state.cardAttack['opponent'].stats.damage;
-					if (cards.at(deckIndex).cards.at(cardIndex).stats.health < 0 || cards.at(deckIndex).cards.at(cardIndex).stats.health === 0) {
+					if (cards.at(deckIndex).cards.at(cardIndex).stats.health <= 0) {
 						cards.at(deckIndex).cards.at(cardIndex).stats.health = 0
 						cards.at(deckIndex).cards.at(cardIndex).dead = true
 					}
-					commit('decks/updateDecksUser', cards, { root: true })
-					commit('updateActiveTakeCard', 'user')
-					commit('changeActiveTurn', 'user');
+
 				}
+				dispatch('updateCards', { cards: cards, deck: pathDispatch, turn: boardNext, takeCard: boardNext, root: root })
 				commit('zeroingCardAttack');
-				commit('updateActiveEventCard', '')
+				commit('updateActiveEventCard', '');
+				commit('updateRound');
 			})
 		},
 
-		healingCard({ commit, state, rootGetters, rootState, dispatch }, { board, card }) {
+		healingCard({ commit, state, dispatch }, { board, card }) {
 			const promise = dispatch('getCardAndDeckPlayers', { board: board, card: card });
 			promise.then((response) => {
 				let { cards, deckIndex, cardIndex, allCards } = response
 				let sameCard = allCards.find((cardPlayer) => cardPlayer.name === card.name)
 				let fullhp = allCards.find((cardPlayer) => cardPlayer.name === card.name)
+				let root = false;
+				let pathDispatch = 'updateOpponentsCards'
+				let boardNext = 'user'
 				if (sameCard.name === state.cardAttack[board].name) {
 					commit('notify/updateNotify', { visible: true, message: 'Нельзя лечить самого себя' }, { root: true })
 					return
@@ -109,30 +126,75 @@ export const battles = {
 					if (cards.at(deckIndex).cards.at(cardIndex).stats.health >= fullhp.stats.health) {
 						cards.at(deckIndex).cards.at(cardIndex).stats.health = fullhp.stats.health
 					}
-					commit('decks/updateDecksUser', cards, { root: true })
-					commit('updateActiveTakeCard', 'opponent')
-					commit('changeActiveTurn', 'opponent');
+					root = true
+					pathDispatch = 'decks/updateDecksUser';
+					boardNext = 'opponent'
 				}
+
 				if (board === 'opponent') {
 					cards.cards.at(cardIndex).stats.health = cards.cards.at(cardIndex).stats.health + state.cardAttack[board].stats.healing;
 					if (cards.cards.at(cardIndex).stats.health >= fullhp.stats.health) {
 						cards.cards.at(cardIndex).stats.health = fullhp.stats.health
 					}
-					commit('updateOpponentsCards', cards);
-					commit('updateActiveTakeCard', 'user')
-					commit('changeActiveTurn', 'user');
 				}
-
+				dispatch('updateCards', { cards: cards, deck: pathDispatch, turn: boardNext, takeCard: boardNext, root: root })
 				commit('zeroingCardAttack');
 				commit('updateActiveEventCard', '')
+				commit('updateRound')
 			})
+		},
 
+		spellAttack({ commit, state, dispatch }, { board, card }) {
+			const promise = dispatch('getCardAndDeckPlayers', { board: board, card: card });
+
+			promise.then((result) => {
+				let { cards, deckIndex, cardIndex } = result
+				let round = state.round
+				let root = true;
+				let pathDispatch = 'decks/updateDecksUser'
+				let boardNext = 'user'
+				if (board === 'opponent') {
+
+					root = false;
+					pathDispatch = 'updateOpponentsCards'
+					boardNext = 'opponent'
+				}
+				if (board === 'user') {
+					const cardItem = cards.at(deckIndex).cards.at(cardIndex)
+					cardItem.effectAttack = {
+						effect: state.cardAttack['opponent'].effect.photoEffect.key,
+						roundStart: ++round,
+						roundEnd: ++round + state.cardAttack['opponent'].stats.spell.rounds,
+						damageCard: state.cardAttack['opponent'].stats.spell.damageSpell
+					};
+				}
+				if (board === 'opponent') {
+					const cardItem = cards.cards.at(cardIndex)
+					cardItem.effectAttack = {
+						effect: state.cardAttack['user'].effect.photoEffect.key,
+						roundStart: ++round,
+						roundEnd: ++round + state.cardAttack['user'].stats.spell.rounds,
+						damageCard: state.cardAttack['user'].stats.spell.damageSpell
+					};
+				}
+				dispatch('updateCards', { cards: cards, deck: pathDispatch, turn: boardNext, takeCard: boardNext, root: root })
+				commit('zeroingCardAttack');
+				commit('updateActiveEventCard', '')
+				commit('updateRound')
+			})
+		},
+
+		updateCards({ commit }, { cards, deck, turn = '', takeCard = '', root }) {
+			commit(deck, cards, { root: root });
+			if (turn !== '' && takeCard !== '') {
+				commit('updateActiveTakeCard', takeCard);
+				commit('changeActiveTurn', turn)
+			}
 
 		},
 
 		takeCardEventCard({ commit, dispatch, state }, { board, event, card = null }) {
 			commit('updateActiveEventCard', event)
-			console.log(board, event, card);
 			if (state.activeEventCard === 'damage' && card !== null) {
 				dispatch('damageAttack', { board: board, card: card })
 				return
@@ -141,7 +203,10 @@ export const battles = {
 				dispatch('healingCard', { board: board, card: card })
 				return
 			}
-
+			if (state.activeEventCard === 'spell' && card !== null) {
+				dispatch('spellAttack', { board: board, card: card })
+				return
+			}
 			if (event === 'damage') {
 				commit('notify/updateNotify', { visible: true, message: 'Кликните на карту оппонента, которую хотите атаковать' }, { root: true })
 				if (board === 'user') {

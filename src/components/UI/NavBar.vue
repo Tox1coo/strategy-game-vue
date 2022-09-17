@@ -79,7 +79,7 @@ export default {
   padding-top: 5px;
   height: 2px;
   width: 100%;
-  background-color: $primary-brown-nav;
+  background-color: $poison-color;
   border-radius: 10px;
   transform: translate(-100%, 0);
   opacity: 0;
@@ -108,7 +108,7 @@ export default {
     text-transform: uppercase;
     a {
       display: block;
-      color: $primary-brown-nav;
+      color: $poison-color;
       text-decoration: none;
     }
     &:hover {

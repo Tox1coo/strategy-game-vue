@@ -1,5 +1,6 @@
 <template>
   <div class="battle">
+    <h1 class="title">{{ getRounds }} раунд</h1>
     <BattleBoard
       :activeTakeCard="getActiveTakeCard"
       :activeTurn="activeTurn"
@@ -27,6 +28,7 @@
       </div>
     </div>
   </transition>
+  <MyButton @click="$router.push('/')" id="exit">Выйти из боя</MyButton>
 </template>
 
 <script>
@@ -53,6 +55,7 @@ export default {
       getActiveTakeCard: "battles/getActiveTakeCard",
       getOpponentsDeadCard: "battles/getOpponentsDeadCard",
       getUserDeadCard: "decks/getUserDeadCard",
+      getRounds: "battles/getRounds",
     }),
     ...mapState({
       activeTurn: (state) => state.battles.activeTurn,
@@ -112,6 +115,11 @@ export default {
 .battle {
   display: flex;
   height: 100%;
+  .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 hr {
   margin-top: 20px;
@@ -147,5 +155,11 @@ hr {
 }
 .result-leave-to {
   transform: scaleY(0);
+}
+
+#exit {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 </style>

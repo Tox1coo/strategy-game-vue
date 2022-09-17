@@ -13,7 +13,7 @@
 
 <script>
 import Card from "@/components/Card/Card.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   props: {
@@ -23,6 +23,8 @@ export default {
   methods: {
     ...mapActions({
       takeCardEventCard: "battles/takeCardEventCard",
+      getCardAndDeckPlayers: "battles/getCardAndDeckPlayers",
+      updateCards: "battles/updateCards",
     }),
 
     attackCard() {
@@ -32,17 +34,68 @@ export default {
         card: this.card,
       });
     },
+    spellAttackPassive() {
+      console.log(this.boardTypeCard);
+      const promise = this.getCardAndDeckPlayers({
+        board: this.boardTypeCard,
+        card: this.card,
+      });
+      promise
+        .then((result) => {
+          const { cards, deckIndex, cardIndex } = result;
+          console.log(cards, deckIndex, cardIndex);
+          const damage = this.card.effectAttack.damageCard;
+          let cardItem;
+          let pathDispatch = "updateOpponentsCards";
+          let root = false;
+          if (this.boardTypeCard === "user") {
+            cardItem = cards.at(deckIndex).cards.at(cardIndex);
+            pathDispatch = "decks/updateDecksUser";
+            root = true;
+          } else {
+            cardItem = cards.cards.at(cardIndex);
+          }
+          if (this.card.effectAttack.roundEnd > this.round) {
+            cardItem.stats.health = cardItem.stats.health - damage;
+            if (cardItem.stats.health <= 0) {
+              cardItem.stats.health = 0;
+              cardItem.dead = true;
+              delete cardItem.effectAttack;
+            }
+          } else {
+            delete cardItem.effectAttack;
+          }
+          this.updateCards({
+            cards: cards,
+            deck: pathDispatch,
+            root: root,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   computed: {
+    ...mapGetters({
+      getRounds: "battles/getRounds",
+    }),
     ...mapState({
       cardAttack: (state) => state.battles.cardAttack,
       activeEventCard: (state) => state.battles.activeEventCard,
+      round: (state) => state.battles.round,
     }),
     getActiveCard() {
       return this.card.name === this.cardAttack[this.boardTypeCard]?.name;
     },
   },
-
+  watch: {
+    getRounds() {
+      if ("effectAttack" in this.card) {
+        this.spellAttackPassive();
+      }
+    },
+  },
   components: { Card },
 };
 </script>

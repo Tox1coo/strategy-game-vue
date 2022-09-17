@@ -29,12 +29,16 @@ export default {
   methods: {
     ...mapMutations({
       updateNotify: "notify/updateNotify",
+      restarRound: "battles/restarRound",
     }),
     goToBattle() {
       try {
-        if (this.getCountCardsInFavoriteDeck < 9)
+        if (this.getCountCardsInFavoriteDeck < 9) {
           throw "Количество карт в колоде меньше 9";
-        else this.$router.push("/battles");
+        } else {
+          this.$router.push("/battles");
+          this.restarRound;
+        }
       } catch (e) {
         this.updateNotify({
           visible: true,

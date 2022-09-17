@@ -43,6 +43,12 @@
         :viewBoxSetting="'0 0 42 42'"
         :path="'add'"
       ></CardButtonSetting>
+      <img
+        v-if="cardInfo?.effectAttack != undefined"
+        :src="`${IMAGE_LINK}${cardInfo.effectAttack.effect}`"
+        alt=""
+        class="card__images-spell"
+      />
     </div>
 
     <div
@@ -124,6 +130,7 @@ export default {
 
   &__images {
     height: 300px;
+    position: relative;
     .card__slip {
       @include rotate-card;
       height: 100%;
@@ -141,6 +148,14 @@ export default {
       text-align: center;
       width: 100%;
       color: #fff;
+    }
+    &-spell {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      opacity: 0.5;
+      height: 100%;
     }
   }
   &__slip {

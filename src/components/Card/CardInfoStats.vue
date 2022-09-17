@@ -87,6 +87,7 @@ export default {
   background-color: rgba(#111, 0.5);
   border-radius: 50%;
   border: 1px double $poison-color;
+  z-index: 1111;
   &__block {
     display: flex;
     flex-direction: column;
