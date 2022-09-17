@@ -199,14 +199,17 @@ export const battles = {
 				dispatch('damageAttack', { board: board, card: card })
 				return
 			}
+
 			if (state.activeEventCard === 'healing' && card !== null) {
 				dispatch('healingCard', { board: board, card: card })
 				return
 			}
+
 			if (state.activeEventCard === 'spell' && card !== null) {
 				dispatch('spellAttack', { board: board, card: card })
 				return
 			}
+
 			if (event === 'damage') {
 				commit('notify/updateNotify', { visible: true, message: 'Кликните на карту оппонента, которую хотите атаковать' }, { root: true })
 				if (board === 'user') {
@@ -216,6 +219,7 @@ export const battles = {
 				}
 				return
 			}
+
 			if (event === 'spell') {
 				commit('notify/updateNotify', { visible: true, message: 'Кликните на карту оппонента, которую хотите атаковать' }, { root: true })
 				if (board === 'user') {
@@ -225,14 +229,17 @@ export const battles = {
 				}
 				return
 			}
+
 			if (event === 'healing') {
 				commit('notify/updateNotify', { visible: true, message: 'Кликните на карту из вашей колоды, которую хотите излечить' }, { root: true })
 				return
 			}
+
 			if (state.activeEventCard !== 'healing') {
 				commit('updateCardAttack', { key: board, card: card })
+			}
 
-			} else if (state.activeEventCard === 'healing') {
+			if (state.activeEventCard === 'healing') {
 				commit('updateCardAttack', { key: 'cardHealing', card: card })
 			}
 

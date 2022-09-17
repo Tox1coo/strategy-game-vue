@@ -43,12 +43,14 @@
         :viewBoxSetting="'0 0 42 42'"
         :path="'add'"
       ></CardButtonSetting>
-      <img
-        v-if="cardInfo?.effectAttack != undefined"
-        :src="`${IMAGE_LINK}${cardInfo.effectAttack.effect}`"
-        alt=""
-        class="card__images-spell"
-      />
+      <transition name="spell-effect">
+        <img
+          v-if="cardInfo?.effectAttack != undefined"
+          :src="`${IMAGE_LINK}${cardInfo.effectAttack.effect}`"
+          alt=""
+          class="card__images-spell"
+        />
+      </transition>
     </div>
 
     <div
@@ -188,5 +190,21 @@ export default {
   to {
     transform: skew(180deg, 0deg);
   }
+}
+
+.spell-effect-enter-active,
+.spell-effect-leave-active {
+  visibility: hidden;
+  opacity: 0;
+
+  transition: visibility 1s ease-in, opacity 1s ease-in;
+}
+.spell-effect-enter-to {
+  visibility: visible;
+  opacity: 0.5;
+}
+.spell-effect-leave-to {
+  visibility: hidden;
+  opacity: 0;
 }
 </style>

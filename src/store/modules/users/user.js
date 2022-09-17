@@ -10,7 +10,8 @@ export const user = {
 			user: null,
 			isLoading: false,
 			error: false,
-			errorMessage: ""
+			errorMessage: "",
+			allUsers: []
 		}
 	},
 
@@ -29,9 +30,24 @@ export const user = {
 			state.user = null;
 			state.error = false;
 			state.errorMessage = ''
+		},
+		updateAllUsers(state, allUsers) {
+			state.allUsers = allUsers
 		}
 	},
 
+	getters: {
+		sortUsersForRating(state) {
+			return state.allUsers.sort((user1, user2) => {
+				if (user1.rating < user2.rating) {
+					return 1
+				} else if (user2.rating < user1.rating) {
+					return -1
+				}
+				else return 0
+			})
+		}
+	},
 
 	actions: {
 		async getLoginUser({ commit, dispatch }, { email, password }) {
@@ -78,6 +94,31 @@ export const user = {
 				console.log(error);
 			});
 		},
+
+		updateUserRating({ commit, state }, status) {
+			let rating = 0
+			axios.get(`${linkFirebase}users.json`).then((user) => {
+				if (status === 'victory') {
+					let wins = 0
+
+					rating = user.data[state.user.uid].rating + 25
+					wins = user.data[state.user.uid].wins + 1
+					axios.put(`${linkFirebase}users/${state.user.uid}/rating.json`, rating)
+					axios.put(`${linkFirebase}users/${state.user.uid}/wins.json`, wins);
+
+				} else if (status === 'defeat') {
+					let defeat = 0;
+					rating = user.data[state.user.uid].rating - 25
+					if (rating < 0) rating = 0;
+					defeat = user.data[state.user.uid].defeat + 1
+					axios.put(`${linkFirebase}users/${state.user.uid}/rating.json`, rating)
+					axios.put(`${linkFirebase}users/${state.user.uid}/defeat.json`, defeat)
+				}
+
+			})
+
+		},
+
 		loggedUser({ commit, dispatch }) {
 			return new Promise((resolve, reject) => {
 				onAuthStateChanged(auth, user => {
@@ -86,6 +127,13 @@ export const user = {
 						dispatch('decks/getDecksUser', user.uid, { root: true })
 
 						dispatch('cards/getCardList', null, { root: true })
+						const allUsers = []
+						axios.get(`${linkFirebase}users.json`).then((response) => {
+							for (const key in response.data) {
+								allUsers.push(response.data[key])
+							}
+							commit('updateAllUsers', allUsers)
+						})
 						resolve('access')
 					}
 					else {

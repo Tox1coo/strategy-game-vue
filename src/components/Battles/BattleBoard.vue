@@ -19,8 +19,8 @@
       <BattleButtons
         v-for="(button, key, index) in cardAttack[activeTurn]?.stats"
         :key="index + key"
-        :buttonEffect="button"
         :typeButton="key"
+        :activeEventCard="activeEventCard"
         @eventBattleCard="eventBattleCard"
       ></BattleButtons>
     </div>
@@ -30,6 +30,13 @@
         Твой ход
       </div>
     </transition>
+
+    <div
+      :class="{ 'battle-board__title_opponent': boardType === 'opponent' }"
+      class="battle-board__title title"
+    >
+      {{ boardType }}
+    </div>
   </div>
 </template>
 
@@ -55,6 +62,7 @@ export default {
     },
     ...mapState({
       cardAttack: (state) => state.battles.cardAttack,
+      activeEventCard: (state) => state.battles.activeEventCard,
     }),
   },
   methods: {
@@ -101,10 +109,25 @@ export default {
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
   }
+  &__title {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color: $error-color !important;
+    line-height: 1.5;
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    &_opponent {
+      right: auto;
+      left: -100px;
+    }
+  }
 }
 .battle-buttons {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
   position: relative;
   top: 50px;

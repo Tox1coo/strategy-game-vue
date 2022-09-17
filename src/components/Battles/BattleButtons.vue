@@ -1,12 +1,13 @@
 <template>
-  <div v-if="typeButton !== 'health'" class="battle-buttons__button">
+  <div v-if="typeButton !== 'health'" class="battle-button">
     <div
+      :class="{ 'battle-button__img_active': typeButton === activeEventCard }"
       @click="$emit('eventBattleCard', typeButton)"
-      class="battle-buttons__button-img"
+      class="battle-button__button battle-button__img"
     >
       <img width="40" :src="require(`@/assets/${typeButton}.svg`)" alt="" />
     </div>
-    <div class="battle-buttons__button-title">{{ getTitleButton.title }}</div>
+    <div class="battle-button__title">{{ getTitleButton.title }}</div>
   </div>
 </template>
 
@@ -38,32 +39,36 @@ export default {
     },
   },
   props: {
-    buttonEffect: {
-      type: [Number, Object],
-    },
     typeButton: String,
+    activeEventCard: String,
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
-.battle-buttons__button {
+.battle-button {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  &-img {
+  width: fit-content;
+  &__img {
     @include background;
+    border-radius: 50%;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: filter 0.4s ease 0s;
+    filter: brightness(0.7);
+    &_active {
+      filter: brightness(1);
+    }
   }
-  &-title {
+  &__title {
     color: $primary-brown-nav;
     font-size: 2rem;
   }

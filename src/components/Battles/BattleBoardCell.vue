@@ -43,7 +43,6 @@ export default {
       promise
         .then((result) => {
           const { cards, deckIndex, cardIndex } = result;
-          console.log(cards, deckIndex, cardIndex);
           const damage = this.card.effectAttack.damageCard;
           let cardItem;
           let pathDispatch = "updateOpponentsCards";

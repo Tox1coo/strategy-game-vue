@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 
 import BattleBoard from "@/components/Battles/BattleBoard.vue";
 export default {
@@ -78,6 +78,9 @@ export default {
     ...mapMutations({
       updateOpponentsCards: "battles/updateOpponentsCards",
     }),
+    ...mapActions({
+      updateUserRating: "user/updateUserRating",
+    }),
     createOpponentsCards() {
       const list = JSON.parse(JSON.stringify(this.cardList));
       let card = list
@@ -107,6 +110,18 @@ export default {
     setTimeout(() => {
       this.createOpponentsCards();
     }, 400);
+  },
+  watch: {
+    getOpponentsDeadCard(opponnentDeadCards) {
+      if (opponnentDeadCards.length === 9) {
+        this.updateUserRating("victory");
+      }
+    },
+    getUserDeadCard(userDeadCards) {
+      if (userDeadCards.length === 9) {
+        this.updateUserRating("defeat");
+      }
+    },
   },
 };
 </script>
