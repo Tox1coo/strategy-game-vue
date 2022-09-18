@@ -1,7 +1,11 @@
 <template>
   <div
     @click.stop="$emit('eventCard')"
-    :class="{ card__button_star: path === 'star' }"
+    :class="{
+      card__button_star: path === 'star',
+      card__button_delete: path === 'remove',
+      card__button_add: path === 'add',
+    }"
     class="card__button"
   >
     <svg
@@ -50,12 +54,25 @@ export default {
     align-items: center;
     top: 0;
     left: 50%;
+    filter: brightness(0.7);
     transform: translateX(-50%);
+    transition: filter 0.1s ease 0s;
     &_star {
       position: relative;
       top: 0;
       left: 0;
       transform: translateX(0);
+    }
+    &_delete {
+      left: 40%;
+      transform: translateX(-60%);
+    }
+    &_add {
+      left: 60%;
+      transform: translateX(-40%);
+    }
+    &:hover {
+      filter: brightness(1);
     }
   }
   &__icon {

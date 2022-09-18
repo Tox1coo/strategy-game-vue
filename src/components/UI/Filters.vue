@@ -108,9 +108,9 @@ export default {
 
 .drop-effect-enter-active,
 .drop-effect-leave-active {
-  transform: translateY(100%);
+  transform: translateY(50%);
 
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 
 .drop-effect-enter-to {
@@ -119,7 +119,7 @@ export default {
   opacity: 1;
 }
 .drop-effect-leave-to {
-  transform: translateY(100%);
+  transform: translateY(50%);
   visibility: hidden;
 
   opacity: 0;

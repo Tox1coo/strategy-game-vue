@@ -99,7 +99,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .cell {
   height: 18vh;
   width: 8vw;

@@ -9,9 +9,7 @@
           :cardInfo="card"
         ></Card>
       </div>
-      <div v-else class="subtitle">
-        У вас нет карт, добавьте их на вкладке "Карты"
-      </div>
+      <div v-else class="subtitle">В колоде нет карт</div>
     </div>
   </transition>
 </template>

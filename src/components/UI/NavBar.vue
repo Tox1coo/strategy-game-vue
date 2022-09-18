@@ -20,39 +20,27 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "NavBar",
   data() {
     return {
-      links: [
-        {
-          linkTitle: "Home",
-          link: "/",
-        },
-        {
-          linkTitle: "Profile",
-          link: "/profile",
-        },
-        {
-          linkTitle: "Ratings",
-          link: "/ratings",
-        },
-        {
-          linkTitle: "Decks",
-          link: "/decks",
-        },
-        {
-          linkTitle: "Exit",
-          linkFunction: this.exitUser,
-        },
-      ],
+      links: [],
     };
+  },
+  computed: {
+    ...mapState({
+      user: (state) => state.user.user,
+    }),
+    getUsername() {
+      return this.user.displayName;
+    },
   },
   methods: {
     ...mapActions({
       signOutUser: "user/signOutUser",
     }),
+
     exitUser() {
       const logout = this.signOutUser();
 
@@ -64,6 +52,30 @@ export default {
           console.log(error);
         });
     },
+  },
+  mounted() {
+    this.links = [
+      {
+        linkTitle: "Home",
+        link: "/",
+      },
+      {
+        linkTitle: "Profile",
+        link: `/profile/${this.getUsername}`,
+      },
+      {
+        linkTitle: "Ratings",
+        link: `/ratings`,
+      },
+      {
+        linkTitle: "Decks",
+        link: "/decks",
+      },
+      {
+        linkTitle: "Exit",
+        linkFunction: this.exitUser,
+      },
+    ];
   },
 };
 </script>

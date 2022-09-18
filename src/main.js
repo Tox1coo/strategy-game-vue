@@ -6,14 +6,14 @@ import "@/styles/UI.scss";
 import components from "@/components/UI";
 import directives from "@/directives";
 
-const app = createApp(App)
+const app = createApp(App);
 
-components.forEach(component => {
-	app.component(component.name, component)
+components.forEach((component) => {
+  app.component(component.name, component);
 });
 
-directives.forEach(directive => {
-	app.directive(directive.name, directive)
-})
+directives.forEach((directive) => {
+  app.directive(directive.name, directive);
+});
 
 app.use(store).use(router).mount("#app");

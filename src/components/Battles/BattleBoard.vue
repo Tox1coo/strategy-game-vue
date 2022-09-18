@@ -57,7 +57,7 @@ export default {
   computed: {
     getCards() {
       return this.cards?.cards
-        ?.filter((card) => card !== "")
+        ?.filter((card) => card !== "" && card !== "'")
         ?.sort(() => Math.random() - 0.5);
     },
     ...mapState({

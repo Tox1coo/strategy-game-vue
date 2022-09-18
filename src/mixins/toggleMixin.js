@@ -1,14 +1,14 @@
 export default {
-	props: {
-		show: {
-			type: Boolean,
-			required: true
-		}
-	},
+  props: {
+    show: {
+      type: Boolean,
+      required: true,
+    },
+  },
 
-	methods: {
-		hideModal() {
-			this.$emit('update:show', false)
-		}
-	}
-}
+  methods: {
+    hideModal() {
+      this.$emit("update:show", false);
+    },
+  },
+};

@@ -2,7 +2,10 @@
   <div :data-deck="deck.name" class="decks__user-item user-deck">
     <div @click="visibleCards = !visibleCards" class="user-deck__block">
       <div class="subtitle subtitle__name">{{ getTitlesCardsInDeck }}</div>
-      <div class="user-deck__block-favorite favorite">
+      <div
+        v-if="$route.name !== 'Profile'"
+        class="user-deck__block-favorite favorite"
+      >
         <p class="text">{{ getCardsInDeck.length }}/9</p>
 
         <CardButtonSetting

@@ -33,7 +33,10 @@ export default {
     }),
     goToBattle() {
       try {
-        if (this.getCountCardsInFavoriteDeck < 9) {
+        if (
+          this.getCountCardsInFavoriteDeck < 9 ||
+          this.getCountCardsInFavoriteDeck === undefined
+        ) {
           throw "Количество карт в колоде меньше 9";
         } else {
           this.$router.push("/battles");
@@ -49,7 +52,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .home {

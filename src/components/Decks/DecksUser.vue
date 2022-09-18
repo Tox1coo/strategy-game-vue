@@ -55,6 +55,11 @@ export default {
     addDecks() {
       this.errorInput.error = false;
       this.errorInput.errorMessage = "";
+      if (this.nameDecks.length > 15) {
+        this.errorInput.error = true;
+        this.errorInput.errorMessage = messages["long-name-deck"];
+        return;
+      }
       if (this.nameDecks) {
         const deck = this.addDecksUser({
           name: this.nameDecks,
@@ -80,7 +85,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import "@/styles/mixins.scss";
 
 .decks {

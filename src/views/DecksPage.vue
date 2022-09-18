@@ -14,13 +14,10 @@
         </li>
       </ul>
     </div>
-    <DecksBody v-if="acitveDecksPage === 'cards'" :decksTitle="'Все карты'">
+    <DecksBody v-show="acitveDecksPage === 'cards'" :decksTitle="'Все карты'">
       <DecksCardsList :cardsList="getSortedCardsList"></DecksCardsList>
     </DecksBody>
-    <DecksBody
-      v-else-if="acitveDecksPage === 'decks'"
-      :decksTitle="'Ваши колоды'"
-    >
+    <DecksBody v-show="acitveDecksPage === 'decks'" :decksTitle="'Ваши колоды'">
       <DecksUser :decksUser="getDecksUser"></DecksUser>
     </DecksBody>
   </div>
@@ -47,7 +44,16 @@ export default {
           photo: "icon-cards",
         },
       ],
+      cardList: null,
     };
+  },
+  mounted() {
+    if (!localStorage.cardList) {
+      this.cardList = this.getSortedCardsList;
+      localStorage.cardList = this.cardList;
+    } else {
+      this.cardList = localStorage.cardList;
+    }
   },
   computed: {
     ...mapGetters({

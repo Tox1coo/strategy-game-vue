@@ -13,7 +13,6 @@
       ></Filters>
       <div v-if="getFavoriteDeck" class="title">
         Активная колода: {{ getFavoriteDeck.name }}
-        <!-- <span>{{ getCountCardsInActiveDeck }}/9</span> -->
       </div>
     </div>
     <div v-if="cardsList.length > 0" class="cards__list">
@@ -105,13 +104,10 @@ export default {
   },
 };
 </script>
-    /*     getCountCardsInActiveDeck() {
-      return this.getFavoriteDeck.cards.filter((card) => card !== "").length;
-    }, */
+
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
 .cards {
-  min-width: 100%;
   display: flex;
   height: 100%;
   flex-direction: column;

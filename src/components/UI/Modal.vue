@@ -42,7 +42,7 @@ export default {
 .modal-effect-leave-active {
   transform: translateX(100%) perspective(600px) rotateY(180deg);
 
-  transition: all 1s ease;
+  transition: all 1.2s ease;
 }
 
 .modal-effect-enter-to {

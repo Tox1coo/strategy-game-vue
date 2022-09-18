@@ -3,6 +3,12 @@
     @click="rotateCard()"
     :class="{
       'cell-card': !checkRoute,
+      /*       card_favorite:
+        cardInFavoriteDeck !== -1 &&
+        cardInFavoriteDeck !== undefined &&
+        acitveDecksPage === 'cards' &&
+        checkRoute &&
+        $route.name !== 'Profile', */
     }"
     class="card"
   >
@@ -32,13 +38,15 @@
         :isRotating="isRotate"
       ></CardInfoStats>
       <CardButtonSetting
-        v-if="acitveDecksPage === 'decks' && checkRoute"
+        v-if="checkRoute && $route.name !== 'Profile'"
         @eventCard="removeCardInDecks"
         :viewBoxSetting="'0 0 500 500'"
         :path="'remove'"
       ></CardButtonSetting>
       <CardButtonSetting
-        v-else-if="acitveDecksPage === 'cards' && checkRoute"
+        v-if="
+          acitveDecksPage === 'cards' && checkRoute && $route.name !== 'Profile'
+        "
         @eventCard="addCardInDecks"
         :viewBoxSetting="'0 0 42 42'"
         :path="'add'"
@@ -71,7 +79,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import CardInfoBlock from "@/components/Card/CardInfoBlock.vue";
 import CardButtonSetting from "@/components/Card/CardButtonSetting.vue";
 
@@ -94,8 +102,16 @@ export default {
       IMAGE_LINK: (state) => state.images.IMAGE_LINK,
       acitveDecksPage: (state) => state.decks.acitveDecksPage,
     }),
+    ...mapGetters({
+      getFavoriteDeck: "decks/getFavoriteDeck",
+    }),
     getImageCard() {
       return `${this.IMAGE_LINK}${this.cardInfo.photo}`;
+    },
+    cardInFavoriteDeck() {
+      return this.getFavoriteDeck?.cards.findIndex(
+        (card) => card.name === this.cardInfo.name
+      );
     },
   },
   methods: {
@@ -111,6 +127,10 @@ export default {
     },
     removeCardInDecks() {
       this.$emit("removeCard", this.cardInfo);
+      this.removeInDecks({
+        card: this.cardInfo,
+        deckCard: this.getFavoriteDeck,
+      });
     },
     addCardInDecks() {
       this.addInDecks(this.cardInfo);
@@ -129,7 +149,7 @@ export default {
   position: relative;
   z-index: 1;
   cursor: pointer;
-
+  transition: transform 0.1s ease;
   &__images {
     height: 300px;
     position: relative;
@@ -179,6 +199,10 @@ export default {
     z-index: 1000;
     color: #fff;
     top: 55px;
+  }
+  &_favorite {
+    transform: scale(1.03);
+    border: 2px solid $primary-brown-nav;
   }
 }
 
