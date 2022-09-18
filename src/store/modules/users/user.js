@@ -117,6 +117,7 @@ export const user = {
     updateUserRating({ commit, state }, status) {
       let rating = 0;
       axios.get(`${linkFirebase}users.json`).then((user) => {
+
         if (status === "victory") {
           let wins = 0;
 
@@ -144,6 +145,7 @@ export const user = {
             defeat
           );
         }
+        commit('battles/restarRound', null, { root: true })
       });
     },
 
