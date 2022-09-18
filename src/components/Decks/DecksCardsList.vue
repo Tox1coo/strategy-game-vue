@@ -25,7 +25,7 @@
     <div v-else class="title">По таким параметрам, карт не нашлось :(</div>
   </div>
 </template>
-
+<!-- TODO: Лагает из за display flex -->
 <script>
 import { mapGetters, mapMutations, mapState } from "vuex";
 import Card from "@/components/Card/Card.vue";
@@ -111,16 +111,20 @@ export default {
   display: flex;
   height: 100%;
   flex-direction: column;
+  align-items: center;
   &__list {
     @include custom-scrollbar;
-    max-height: 680px;
+    max-height: 800px;
     overflow-y: auto;
+    max-width: 50%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     padding-right: 15px;
     padding-top: 5px;
+    flex: 1 0;
   }
   &__filter {
     display: flex;
