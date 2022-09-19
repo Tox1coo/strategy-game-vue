@@ -55,11 +55,12 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 20px;
   img {
     cursor: pointer;
     filter: saturate(50%);
@@ -67,9 +68,15 @@ export default {
     &:hover {
       filter: saturate(100%);
     }
+    @media (max-width: 500px) {
+      width: 250px;
+    }
   }
   .subtitle {
-    width: 70rem;
+    max-width: 70rem;
+    @media (max-width: 500px) {
+      font-size: 2.2rem;
+    }
   }
 }
 </style>

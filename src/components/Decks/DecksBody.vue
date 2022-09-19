@@ -19,5 +19,6 @@ export default {
 <style lang="scss" scoped>
 .decks__body {
   flex: 1 1;
+  padding: 0 10px;
 }
 </style>

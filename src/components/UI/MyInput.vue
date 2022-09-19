@@ -60,9 +60,12 @@ export default {
 #error {
   display: inline-block;
   color: $error-color;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   height: 0;
   margin-top: 5px;
   padding-bottom: 10px;
+  @media (min-width: 460px) {
+    font-size: 1.7rem;
+  }
 }
 </style>

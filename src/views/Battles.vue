@@ -7,7 +7,6 @@
       :boardType="'opponent'"
       :cards="getOpponentCards"
     ></BattleBoard>
-    <hr />
     <BattleBoard
       :activeTakeCard="getActiveTakeCard"
       :activeTurn="activeTurn"
@@ -28,7 +27,10 @@
       </div>
     </div>
   </transition>
-  <MyButton @click="$router.push('/')" id="exit">Выйти из боя</MyButton>
+  <MyButton @click="$router.push('/')" id="exit"
+    ><span>Выйти из боя</span>
+    <img :src="require('@/assets/exit.png')" alt="" />
+  </MyButton>
 </template>
 
 <script>
@@ -129,11 +131,26 @@ export default {
 <style lang="scss" scoped>
 .battle {
   display: flex;
-  height: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 90px;
   .title {
     position: absolute;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
+    @media (max-width: 800px) {
+      font-size: 3.2rem;
+    }
+  }
+  @media (min-width: 320px) and (max-width: 800px) {
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  @media (min-width: 800px) {
+    flex-direction: row;
   }
 }
 hr {
@@ -174,7 +191,24 @@ hr {
 
 #exit {
   position: absolute;
-  bottom: 20px;
+  top: 20px;
   left: 20px;
+  img {
+    display: none;
+  }
+  span {
+    display: inline;
+  }
+  @media (max-width: 800px) {
+    top: 10px;
+    left: 10px;
+    img {
+      display: block;
+    }
+    span {
+      display: none;
+    }
+    padding: 15px 20px !important;
+  }
 }
 </style>

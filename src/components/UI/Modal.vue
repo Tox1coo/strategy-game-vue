@@ -26,16 +26,20 @@ export default {
   z-index: 1000;
   left: 0;
   display: flex;
+  cursor: pointer;
   &__inner {
     min-width: 30vw;
     height: fit-content;
-    min-height: 20vh;
+    min-height: 16vh;
     padding: 15px;
     border-radius: 20px;
     background-color: #fff;
-    margin: auto;
+    margin: auto 10px;
     z-index: 100;
     border: 2px solid $poison-color;
+    @media (min-width: 460px) {
+      margin: auto;
+    }
   }
 }
 .modal-effect-enter-active,

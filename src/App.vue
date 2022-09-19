@@ -58,7 +58,6 @@ export default {
 }
 
 .block {
-  height: 100vh;
 }
 
 #nav {

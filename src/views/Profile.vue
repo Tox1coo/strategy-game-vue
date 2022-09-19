@@ -12,18 +12,15 @@
               Дата регистрации:
               {{
                 new Date(
-                  +this.getUserProfile(this.localStorageProfile.name)
-                    ?.registerDate
+                  +getUserProfile($route.params.name)?.registerDate
                 ).getDate()
               }}/{{
                 new Date(
-                  +this.getUserProfile(this.localStorageProfile.name)
-                    ?.registerDate
+                  +getUserProfile($route.params.name)?.registerDate
                 ).getMonth() + 1
               }}/{{
                 new Date(
-                  +this.getUserProfile(this.localStorageProfile.name)
-                    ?.registerDate
+                  +getUserProfile($route.params.name)?.registerDate
                 ).getFullYear()
               }}
             </div>
@@ -163,15 +160,18 @@ export default {
 .profile {
   @include custom-scrollbar;
 
-  max-height: 90vh;
-  width: 100%;
-  margin-top: 50px;
+  max-height: 100vh;
+  width: 90%;
+  margin: 50px auto;
   overflow: auto;
   .title {
     text-align: left;
     font-size: 3.5rem;
   }
   &__img {
+    @media (max-width: 800px) {
+      order: 0;
+    }
     img {
       width: 200px;
     }
@@ -181,9 +181,8 @@ export default {
   }
   &__inner {
     @include background;
-    min-height: 85vh;
 
-    height: 100%;
+    min-height: 95vh;
     padding: 20px;
     border-radius: 25px;
     display: flex;
@@ -193,9 +192,22 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 800px) {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
   &__top {
     display: flex;
+    @media (max-width: 535px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      .title {
+        text-align: center;
+      }
+    }
   }
   &__user {
     margin-left: 15px;

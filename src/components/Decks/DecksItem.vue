@@ -91,6 +91,11 @@ export default {
       color: #fff;
     }
   }
+  @media (max-width: 510px) {
+    .subtitle {
+      font-size: 2.2rem;
+    }
+  }
 }
 
 .favorite {

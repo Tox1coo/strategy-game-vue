@@ -1,16 +1,18 @@
 <template>
   <div class="decks__cards cards">
     <div class="cards__filter">
-      <Filters
-        @changeActiveFilter="changeActiveFilter"
-        :filterList="filtersType"
-        :activeFilterItem="filterItemType"
-      ></Filters>
-      <Filters
-        @changeActiveFilter="changeActiveFilter"
-        :filterList="filtersRange"
-        :activeFilterItem="filterItemRange"
-      ></Filters>
+      <div>
+        <Filters
+          @changeActiveFilter="changeActiveFilter"
+          :filterList="filtersType"
+          :activeFilterItem="filterItemType"
+        ></Filters>
+        <Filters
+          @changeActiveFilter="changeActiveFilter"
+          :filterList="filtersRange"
+          :activeFilterItem="filterItemRange"
+        ></Filters>
+      </div>
       <div v-if="getFavoriteDeck" class="title">
         Активная колода: {{ getFavoriteDeck.name }}
       </div>
@@ -109,14 +111,13 @@ export default {
 @import "@/styles/mixins.scss";
 .cards {
   display: flex;
-  height: 100%;
   flex-direction: column;
   align-items: center;
   &__list {
     @include custom-scrollbar;
     max-height: 800px;
     overflow-y: auto;
-    max-width: 50%;
+    max-width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,17 +126,37 @@ export default {
     padding-right: 15px;
     padding-top: 5px;
     flex: 1 0;
+    @media (max-width: 930px) {
+      max-width: 80%;
+    }
+    @media (max-width: 585px) {
+      max-width: 80%;
+    }
   }
   &__filter {
+    align-items: center;
+    width: 100%;
+    justify-content: center;
     display: flex;
     gap: 20px;
     margin-bottom: 25px;
+    flex-wrap: wrap;
+    div {
+      display: flex;
+      gap: 15px;
+      order: 1;
+      @media (max-width: 385px) {
+        flex-direction: column;
+      }
+    }
     .title {
       font-size: 2rem;
+      @media (max-width: 810px) {
+        order: 0;
+      }
     }
   }
   .title {
-    flex: 0 1 50%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -77,6 +77,12 @@ export default {
       transform: rotate(230deg) translate(-3px, -10px);
     }
   }
+  @media (max-width: 585px) {
+    padding: 5px 60px;
+  }
+  @media (max-width: 470px) {
+    padding: 5px 40px;
+  }
 }
 .drop {
   @include background;

@@ -1,5 +1,5 @@
 /* general */
-
+@import "@/styles/mixins.scss";
 *,
 *::before,
 *::after {
@@ -10,14 +10,13 @@
 
 html {
 	font-size: 62.5%;
-	height: 100vh;
+	@include custom-scrollbar;
 }
 
 body {
 	height: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
-	overflow: hidden;
 	background-position: center;
 }
 /* btns */
@@ -151,9 +150,11 @@ body {
 	align-items: center;
 }
 .auth {
-	height: 100%;
 	@extend %center;
+
+	height: 100vh;
 	flex-direction: column;
+	margin: 0 20px;
 	&__form {
 		@extend %center;
 		box-shadow: 10px 10px 20px $poison-color;
@@ -164,8 +165,8 @@ body {
 		border-radius: 25px;
 		background-color: rgba(#111, 0.4);
 		backdrop-filter: blur(5px) grayscale(85%);
+		padding: 10px;
 		height: 600px;
-		width: 500px;
 		.input {
 			margin-top: 25px;
 
@@ -180,6 +181,9 @@ body {
 		.subtitle_auth {
 			position: absolute;
 			top: 40px;
+		}
+		@media (min-width: 510px) {
+			width: 500px;
 		}
 	}
 	&__btns {

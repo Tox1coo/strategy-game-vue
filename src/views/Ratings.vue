@@ -105,7 +105,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
 .ratings {
-  height: 85vh;
+  height: 90vh;
   width: 100%;
   margin-top: 50px;
 
@@ -119,6 +119,8 @@ export default {
     display: flex;
     align-items: center;
     overflow: auto;
+    gap: 20px;
+    padding: 0 20px;
   }
 }
 </style>

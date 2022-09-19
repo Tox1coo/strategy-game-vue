@@ -63,6 +63,10 @@ export default {
     flex-wrap: wrap;
     gap: 10px 0;
     padding: 10px;
+    @media (max-width: 510px) {
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .subtitle {

@@ -91,14 +91,14 @@ export default {
 .decks {
   &__modal {
     height: 100%;
-    width: 80%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .btn {
       margin-top: 40px;
     }
   }
   &__user {
-    height: 100%;
     .title {
       height: 50%;
       display: flex;

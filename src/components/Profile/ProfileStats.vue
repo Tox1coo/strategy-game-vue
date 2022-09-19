@@ -37,6 +37,10 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   flex: 1 0;
+  @media (max-width: 800px) {
+    order: 1;
+    width: 100%;
+  }
   &-item {
     flex: 0 1 50%;
     display: flex;

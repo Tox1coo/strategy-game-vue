@@ -5,8 +5,15 @@
       v-for="infoItem in ratingItem.info"
       :key="infoItem"
       class="rating-info__item"
+      :class="{ 'rating-info_link': ratingItem.title === 'Никнеймы' }"
     >
-      {{ infoItem }}
+      <router-link
+        v-if="ratingItem.title === 'Никнеймы'"
+        :to="`/profile/${infoItem}`"
+      >
+        {{ infoItem }}
+      </router-link>
+      <span v-else>{{ infoItem }}</span>
     </div>
   </div>
 </template>
@@ -29,6 +36,16 @@ export default {
     color: #fff;
     font-size: 1.8rem;
     margin-bottom: 10px;
+  }
+  &_link {
+    a {
+      color: $poison-color;
+      opacity: 0.7;
+      transition: opacity 0.1s ease 0s;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }
 </style>

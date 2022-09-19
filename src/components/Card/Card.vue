@@ -3,12 +3,12 @@
     @click="rotateCard()"
     :class="{
       'cell-card': !checkRoute,
-      /*       card_favorite:
+      card_favorite:
         cardInFavoriteDeck !== -1 &&
         cardInFavoriteDeck !== undefined &&
         acitveDecksPage === 'cards' &&
         checkRoute &&
-        $route.name !== 'Profile', */
+        $route.name !== 'Profile',
     }"
     class="card"
   >

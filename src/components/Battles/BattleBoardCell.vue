@@ -102,7 +102,9 @@ export default {
 <style lang="scss">
 .cell {
   height: 18vh;
-  width: 8vw;
+  min-width: 8vw;
+  max-width: 8vw;
+
   transition: transform 0.5s ease 0s, filter 0.5s linear;
   .card {
     height: 100%;
@@ -116,10 +118,34 @@ export default {
       width: 100%;
     }
     .card__img {
-      height: 64%;
+      height: 64% !important;
     }
     .subtitle {
       font-size: 1.5rem;
+    }
+    .stats {
+      width: 45%;
+      height: 43px;
+    }
+  }
+  @media (min-width: 320px) and (max-width: 800px) {
+    max-width: 24vw;
+    min-width: 24vw;
+
+    &-card {
+      .card__img {
+        height: 60% !important;
+      }
+    }
+  }
+  @media (min-width: 801px) and (max-width: 1000px) {
+    max-width: 14vw;
+    min-width: 14vw;
+
+    &-card {
+      .card__img {
+        height: 60% !important;
+      }
     }
   }
   &_dead {

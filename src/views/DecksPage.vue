@@ -81,6 +81,28 @@ export default {
 .decks {
   display: flex;
   gap: 20px;
+  min-height: 100vh;
+  margin-bottom: 20px;
+  @media (max-width: 585px) {
+    .sidebar {
+      border-right: 0;
+      border-bottom: 2px solid $poison-color;
+
+      &__list {
+        height: 60px;
+        width: 100%;
+        flex-direction: row;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+      }
+      &__item {
+        display: flex;
+        align-items: center;
+      }
+    }
+    flex-direction: column;
+  }
 }
 
 .sidebar {

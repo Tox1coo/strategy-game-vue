@@ -69,8 +69,17 @@ export default {
     }
   }
   &__title {
-    color: $primary-brown-nav;
+    color: $poison-color;
     font-size: 2rem;
+  }
+  @media (min-width: 320px) and (max-width: 800px) {
+    &__img {
+      width: 40px;
+      height: 40px;
+      img {
+        width: 20px;
+      }
+    }
   }
 }
 </style>
