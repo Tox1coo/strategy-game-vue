@@ -121,7 +121,7 @@ export default {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-100%);
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     &_user {
@@ -133,7 +133,7 @@ export default {
     @media (min-width: 320px) and (max-width: 800px) {
       &_user {
         padding: 8px;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 420px);
 
         top: 50%;
         left: 19px;
@@ -160,7 +160,7 @@ export default {
     line-height: 1.5;
     position: absolute;
     top: 50%;
-    right: -100px;
+    left: -50px;
     transform: translateY(-50%);
     @media (min-width: 320px) and (max-width: 800px) {
       right: -50px;
@@ -171,8 +171,8 @@ export default {
       }
     }
     &_opponent {
-      right: auto;
-      left: -100px;
+      right: -50px;
+      left: auto;
     }
   }
 }
@@ -182,7 +182,6 @@ export default {
   align-items: flex-start;
   width: 100%;
   position: relative;
-  top: 50px;
   &_user {
     @media (min-width: 320px) and (max-width: 800px) {
       position: absolute;

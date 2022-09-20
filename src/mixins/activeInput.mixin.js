@@ -20,4 +20,14 @@ export const activeInputMixin = {
       }
     });
   },
+  beforeOnMount() {
+    this.$refs.input.removeEventListener("focus", () => {
+      this.activeInput = true;
+    });
+    this.$refs.input.removeEventListener("blur", () => {
+      if (!this.modelValue) {
+        this.activeInput = false;
+      }
+    });
+  }
 };

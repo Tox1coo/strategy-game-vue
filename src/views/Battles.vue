@@ -136,6 +136,7 @@ export default {
   align-items: center;
   flex-direction: column;
   gap: 90px;
+  margin: 0 20px;
   .title {
     position: absolute;
     top: 0;
@@ -160,7 +161,7 @@ hr {
 .result {
   position: absolute;
   display: flex;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
   pointer-events: none;
   top: 0;
@@ -169,10 +170,15 @@ hr {
   background-color: rgba(#171717, 0.5);
   &-block {
     pointer-events: all;
-    margin: auto;
+    margin: auto 20px;
     display: flex;
     flex-direction: column;
     gap: 50px;
+  }
+  @media (min-width: 320px) and (max-width: 800px) {
+    img {
+      width: 100%;
+    }
   }
 }
 .result-enter-active,

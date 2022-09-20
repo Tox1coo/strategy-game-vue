@@ -183,7 +183,7 @@ export default {
     @include background;
 
     min-height: 95vh;
-    padding: 20px;
+    padding: 5px;
     border-radius: 25px;
     display: flex;
     flex-direction: column;

@@ -105,9 +105,10 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
 .ratings {
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   margin-top: 50px;
+  margin-bottom: 50px;
 
   &__inner {
     @include background;

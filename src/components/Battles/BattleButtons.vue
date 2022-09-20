@@ -80,6 +80,9 @@ export default {
         width: 20px;
       }
     }
+    &__title {
+      font-size: 1.7rem;
+    }
   }
 }
 </style>
