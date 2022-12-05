@@ -68,9 +68,6 @@ export default {
     ...mapMutations({
       updateActiveDecksPage: "decks/updateActiveDecksPage",
     }),
-    makeFavoriteDeck(deck, favorite) {
-      console.log(deck, favorite);
-    },
   },
   components: { DecksCardsList, DecksBody, DecksUser },
 };

@@ -47,11 +47,9 @@ export const decks = {
       const indexCard = state.decksList
         .at(deckIndex)
         .cards.findIndex((cards) => cards.name === card.name);
-      console.log(indexCard);
       if (indexCard !== -1) {
         state.decksList.at(deckIndex).cards.splice(indexCard, 1);
       }
-      console.log(state.decksList.at(deckIndex).cards);
     },
   },
   getters: {

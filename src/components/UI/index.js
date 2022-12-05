@@ -6,6 +6,7 @@ import Filters from "@/components/UI/Filters";
 import Modal from "@/components/UI/Modal";
 import ModalNotify from "@/components/UI/ModalNotify";
 import Burger from "@/components/UI/Burger";
+import Footer from "@/components/UI/Footer";
 
 export default [
   MyInput,
@@ -16,5 +17,5 @@ export default [
   Modal,
   ModalNotify,
   Burger,
-
+  Footer
 ];

@@ -2,6 +2,7 @@
   <div v-if="isLoading" class="block">
     <router-view />
     <ModalNotify></ModalNotify>
+    <Footer></Footer>
   </div>
   <IsLoading v-else></IsLoading>
 </template>
@@ -57,8 +58,7 @@ export default {
   color: #2c3e50;
 }
 
-.block {
-}
+.block {}
 
 #nav {
   padding: 30px;

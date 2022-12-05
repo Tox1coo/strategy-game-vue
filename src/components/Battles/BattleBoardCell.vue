@@ -35,7 +35,6 @@ export default {
       });
     },
     spellAttackPassive() {
-      console.log(this.boardTypeCard);
       const promise = this.getCardAndDeckPlayers({
         board: this.boardTypeCard,
         card: this.card,
@@ -102,8 +101,8 @@ export default {
 <style lang="scss">
 .cell {
   height: 18vh;
-  min-width: 8vw;
-  max-width: 8vw;
+  min-width: 10vw;
+  max-width: 10vw;
 
   transition: transform 0.5s ease 0s, filter 0.5s linear;
   .card {

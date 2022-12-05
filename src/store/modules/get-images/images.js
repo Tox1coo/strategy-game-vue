@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { linkFirebase, firebaseConfig } from "@/store/config/firebase";
 import axios from "axios";
-console.log(linkFirebase);
 export const images = {
   state() {
     return {
@@ -22,20 +21,18 @@ export const images = {
 
   getters: {
     getRandomBackgroundPage(state) {
-      return `${state.IMAGE_LINK}${
-        state.backgroundPageList[
+      return `${state.IMAGE_LINK}${state.backgroundPageList[
           Math.floor(1 + Math.random() * (state.backgroundPageList.length - 1))
         ].key
-      }`;
+        }`;
     },
     getRandomBackgroundBattles(state) {
-      return `${state.IMAGE_LINK}${
-        state.backgroundBattleList[
+      return `${state.IMAGE_LINK}${state.backgroundBattleList[
           Math.floor(
             1 + Math.random() * (state.backgroundBattleList.length - 1)
           )
         ].key
-      }`;
+        }`;
     },
   },
 

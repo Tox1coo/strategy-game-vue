@@ -20,12 +20,7 @@ export default {
     },
   },
 
-  methods: {
-    onDropCards(event, field) {
-      console.log(event);
-      console.log(field);
-    },
-  },
+  methods: {},
   components: { Card },
 };
 </script>

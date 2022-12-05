@@ -131,7 +131,6 @@ export const user = {
         } else if (status === "defeat") {
           let defeat = 0;
           rating = user.data[state.user.uid].rating - 25;
-          console.log(rating);
           if (rating <= 0) {
             rating = '0';
           }

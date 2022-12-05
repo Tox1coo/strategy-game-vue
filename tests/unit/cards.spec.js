@@ -59,7 +59,6 @@ describe("Cards", () => {
   it("Возвращает пустой массив", () => {
     state.filterItemType = "Боец";
     state.filterItemRange = "Средний";
-    console.log(state);
     const actual = cards.getters.getSortedCardsList(state);
     expect(actual).toEqual([]);
   });

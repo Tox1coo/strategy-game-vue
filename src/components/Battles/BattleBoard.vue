@@ -96,7 +96,7 @@ export default {
 .battle-board {
   display: flex;
   flex-wrap: wrap;
-  width: calc((8vw * 3) + 15px);
+  width: calc((10vw * 3) + 15px);
   height: calc((18vh * 3) + 20px);
   gap: 10px 0;
   justify-content: space-between;
